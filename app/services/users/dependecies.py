@@ -1,11 +1,10 @@
 from datetime import datetime
 
 from fastapi import Request, Depends
-from jose import jwt, JWTError
+from jose import jwt, ExpiredSignatureError
 
 from app.config import settings
-from app.exceptions import (TokenExpiredException, TokenAbsentException, IncorrectTokenFormatException,
-                            UserIsNotPresentException)
+from app.exceptions import (TokenExpiredException, TokenAbsentException, UserIsNotPresentException)
 from app.services.users.dao import UsersDaO
 from app.models.users import Users
 
@@ -22,8 +21,8 @@ async def get_current_user(token: str = Depends(get_token)) -> Users:
         payload = jwt.decode(
             token, settings.JWT_SECRET, settings.JWT_ALGORITHM
         )
-    except JWTError:
-        raise IncorrectTokenFormatException
+    except ExpiredSignatureError:
+        raise TokenExpiredException
 
     expire: str = payload.get("exp")
     if (not expire) or (int(expire) < datetime.utcnow().timestamp()):

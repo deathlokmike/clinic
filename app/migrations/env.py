@@ -8,10 +8,9 @@ from alembic import context
 from app.services.database import Base
 from app.config import settings
 from app.models.users import Users
-from app.models.common import Person
 from app.models.doctors import Doctors
 from app.models.patients import Patients
-
+from app.models.pneumonia import Pneumonia
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

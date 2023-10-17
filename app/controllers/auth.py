@@ -7,8 +7,8 @@ from app.services.users.schemas import SUserAuth
 
 
 router = APIRouter(
-    prefix='/api/auth',
-    tags=['Авторизация']
+    prefix='/auth',
+    tags=['Авторизация и аутентификация']
 )
 
 
@@ -19,8 +19,7 @@ async def register_user(user_data: SUserAuth):
         raise UserAlreadyExistsException
     hashed_password = get_password_hash(user_data.password)
     await UsersDaO.insert_value(email=user_data.email,
-                                password=hashed_password,
-                                role=0)
+                                password=hashed_password)
 
 
 @router.post('/login')

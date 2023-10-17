@@ -34,10 +34,5 @@ class TokenAbsentException(ClinicBaseException):
     detail = "Токен отсутствует"
 
 
-class IncorrectTokenFormatException(ClinicBaseException):
-    status_code = status.HTTP_401_UNAUTHORIZED
-    detail = "Некорректный формат токена"
-
-
 class UserIsNotPresentException(ClinicBaseException):
     status_code = status.HTTP_401_UNAUTHORIZED
