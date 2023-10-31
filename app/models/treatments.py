@@ -1,5 +1,6 @@
+from datetime import datetime
 from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy import ForeignKey, String
+from sqlalchemy import ForeignKey, String, DateTime
 
 from app.services.database import Base
 
@@ -12,4 +13,5 @@ class Treatments(Base):
     doctor_id: Mapped[int] = mapped_column(ForeignKey("doctors.id"), nullable=False)
     complaints: Mapped[str] = mapped_column(String, nullable=True)
     examinations: Mapped[str] = mapped_column(String, nullable=True)
-    # diagnosis_id: Mapped[int] = mapped_column(ForeignKey("diagnosis.id"), nullable=False)
+    diagnosis: Mapped[int] = mapped_column(String, nullable=True)
+    appointment: Mapped[datetime] = mapped_column(DateTime, nullable=False)

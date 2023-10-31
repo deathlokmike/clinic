@@ -2,3 +2,4 @@
 *.pyc
 .env
 app/migrations/versions/c849f7403ba6_init.py
+архитектура.txt

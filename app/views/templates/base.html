@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-            content="flex width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ url_for('static', path='img/clinic-48.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='styles/navbar.css') }}">
@@ -11,13 +11,13 @@
 
     <script>
         async function logoutUser() {
-            const url = "http://localhost:8000/auth/logout";
+            const url = "/auth/logout";
 
             await fetch(url, {
                 method: 'POST',
             }).then(response => {
                 if (response.status === 200) {
-                    window.location.href = "/views/login"
+                    window.location.href = "/pages/login";
                 }
             });
         }
