@@ -14,3 +14,4 @@ class Person(Base):
     passport_data: Mapped[str]
     address: Mapped[str]
     phone_number: Mapped[str]
+    image_path: Mapped[str]

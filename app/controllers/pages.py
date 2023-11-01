@@ -3,7 +3,6 @@ from fastapi.templating import Jinja2Templates
 
 
 router = APIRouter(
-    prefix="/pages",
     tags=["Фронтенд авторизация"]
 )
 
@@ -20,6 +19,6 @@ async def get_login_page(request: Request):
     return templates.TemplateResponse(name="login.html", context={"request": request})
 
 
-@router.get("/me")
+@router.get("/user/me")
 async def get_user_page(request: Request):
     return templates.TemplateResponse(name="me.html", context={"request": request})

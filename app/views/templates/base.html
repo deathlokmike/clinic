@@ -11,13 +11,13 @@
 
     <script>
         async function logoutUser() {
-            const url = "/auth/logout";
+            const url = "/api/auth/logout";
 
             await fetch(url, {
                 method: 'POST',
             }).then(response => {
                 if (response.status === 200) {
-                    window.location.href = "/pages/login";
+                    window.location.href = "/login";
                 }
             });
         }

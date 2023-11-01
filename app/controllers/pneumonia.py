@@ -5,7 +5,7 @@ from app.models.users import Users
 from app.services.users.dependecies import get_current_user
 
 router = APIRouter(
-    prefix="/pneumonia",
+    prefix="/api/pneumonia",
     tags=["Блок с пневмонией"]
 )
 
