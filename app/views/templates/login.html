@@ -18,7 +18,9 @@
             if (response.status === 200) {
                 window.location.href = "/user/me";
             } else {
-                wrongCredentialsSpan.textContent = "Неверный email или пароль";
+                response.json().then(value => {
+                    wrongCredentialsSpan.textContent = value.detail;
+                })
             }
         });
     }
@@ -55,15 +57,15 @@
             </div>
         </div>
 
-        <span id="wrong_credentials" class="text-sm text-red-400"></span>
-
-        <div class="flex flex-col items-center justify-between mb-7">
+        <div class="flex flex-col items-center justify-between mb-2">
             <button onclick="loginUser()"
                 class="lg:w-64 flex py-2 px-4 justify-center text-base font-medium text-white bg-blue-500 rounded-2xl hover:bg-blue-400">
                 Войти</button>
         </div>
 
-        <div class="flex flex-col items-center justify-between mb-2">
+        <span id="wrong_credentials" class="flex flex-col items-center justify-between text-sm text-red-400"></span>
+
+        <div class="flex flex-col items-center justify-between mb-2, mt-2">
             <p>Не зарегистрированы?</p>
             <a class="font-bold" href="/registration">Создать аккаунт</a>
         </div>

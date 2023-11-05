@@ -32,7 +32,7 @@ async def get_current_user(token: str = Depends(get_token)) -> Users:
     if not user_id:
         raise UserIsNotPresentException
 
-    user = await UsersDaO.get_by_id(int(user_id))
+    user = await UsersDaO.get_by_id(user_id)
     if not user:
         raise UserIsNotPresentException
 

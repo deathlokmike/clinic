@@ -11,6 +11,8 @@ from app.models.users import Users
 from app.models.doctors import Doctors
 from app.models.patients import Patients
 from app.models.pneumonia import Pneumonia
+from app.models.appointments import Appointments
+from app.models.treatments import Treatments
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -1,10 +1,11 @@
 from app.services.database import async_session
+from app.services.database import Base
 
 from sqlalchemy import select, insert, delete
 
 
 class BaseDAO:
-    model = None
+    model: Base = None
 
     @classmethod
     async def get_all(cls):

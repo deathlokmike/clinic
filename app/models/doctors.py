@@ -1,12 +1,14 @@
-from app.models.common import Person
+from app.models.common import ExtendedUsers
+
 from datetime import date
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import ForeignKey, Date
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Date
 
 
-class Doctors(Person):
+class Doctors(ExtendedUsers):
     __tablename__ = 'doctors'
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     specialization: Mapped[str]  # специализация
     date_employment: Mapped[date] = mapped_column(Date, nullable=False)  # дата начала работы
-    length_service: Mapped[int]  # опыт работы
+    pre_work_experience: Mapped[int]  # предыдущий опыт работы
+    resigned: Mapped[bool] # уволился
+

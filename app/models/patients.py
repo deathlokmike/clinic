@@ -1,9 +1,6 @@
-from app.models.common import Person
-
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import ForeignKey
+from app.models.common import ExtendedUsers
+from sqlalchemy.orm import Mapped, relationship
 
 
-class Patients(Person):
+class Patients(ExtendedUsers):
     __tablename__ = 'patients'
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=True)

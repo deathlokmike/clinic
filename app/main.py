@@ -4,6 +4,7 @@ from fastapi.routing import APIRouter
 from app.controllers.pages import router as router_view
 from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.auth import router as router_auth
+from app.controllers.appointments import router as router_appointments
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -14,6 +15,7 @@ main_router = APIRouter()
 main_router.include_router(router_view)
 main_router.include_router(router_auth)
 main_router.include_router(router_pneumonia)
+main_router.include_router(router_appointments)
 
 app.include_router(main_router)
 
