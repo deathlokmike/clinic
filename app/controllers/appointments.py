@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends
-from app.models.users import Users
-from app.services.users.dependencies import get_current_user
+from app.models.patients import Patients
+from app.services.patients.dependencies import get_current_patient
 from app.services.appointments.dao import AppointmentsDAO
-from app.services.appointments.schemas import SUserAppointment
+from app.services.patients.schemas import SExtendedUser
+from app.services.appointments.schemas import SAppointmentsWithPatientInfo
+from pydantic import TypeAdapter
 
 
 router = APIRouter(
@@ -12,6 +14,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_patient_appointments(user: Users = Depends(get_current_user)) -> list[SUserAppointment]:
-    appointments = await AppointmentsDAO.get_patient_appointments(user_id=user.id)
-    return appointments
+async def get_patient_info_and_appointments(patient: Patients = Depends(get_current_patient)) -> SAppointmentsWithPatientInfo:
+    appointments = await AppointmentsDAO.get_patient_appointments(patient_id=patient.id)
+    patient = TypeAdapter(SExtendedUser).validate_python(patient).model_dump()
+    return {"patient": patient, "appointments": appointments}

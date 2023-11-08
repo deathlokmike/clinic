@@ -1,7 +1,7 @@
 from app.models.common import ExtendedUsers
 
 from datetime import date
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Date
 
 

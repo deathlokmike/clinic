@@ -40,7 +40,7 @@ VALUES
 
 INSERT INTO patients (user_id, id, full_name, birth_day, gender, passport_data, address, phone_number, profile_photo_path)
 VALUES
-('f68d50db-f10a-48b4-acb1-8fae183cac3a', 1, 'Иван Иванов', '1990-05-15', true, '5234045678', 'ул. Ленина, д. 123', '79012345678', 'img/default_profile_photo.png'),
+('f68d50db-f10a-48b4-acb1-8fae183cac3a', 1, 'Иван Иванов', '1990-05-15', true, '5234045678', 'ул. Ленина, д. 123', '79012345678', 'img/users/f68d50db-f10a-48b4-acb1-8fae183cac3a.png'),
 ('4d527bd4-c872-4e2c-a56f-14260b345a64', 2, 'Мария Петрова', '1985-09-20', false, '9876543210', 'ул. Гагарина, д. 45', '79123456789', 'img/default_profile_photo.png'),
 ('4a7f20f7-e92d-4925-a580-2b965e2da0a6', 3, 'Алексей Смирнов', '1995-02-10', true, '1122334455', 'ул. Пушкина, д. 67', '79234567890', 'img/default_profile_photo.png'),
 ('bead8e61-68be-4f39-a459-bf6c906b37c1', 4, 'Екатерина Козлова', '1980-12-25', false, '5544332211', 'ул. Жукова, д. 56', '79345678901', 'img/default_profile_photo.png'),

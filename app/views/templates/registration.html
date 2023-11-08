@@ -1,28 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-<script>
-    async function registerUser() {
-        const wrongCredentialsSpan = document.getElementById("wrong_credentials");
-        wrongCredentialsSpan.textContent = "";
-
-        const url = "/api/auth/register";
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, password: password }),
-        }).then(response => {
-            if (response.status === 200) {
-                window.location.href = "/login"
-            } else {
-                wrongCredentialsSpan.textContent = "Пользователь с таким email уже существует";
-            }
-        });
-    }
-</script>
+<script src="{{ url_for('static', path='scripts/auth.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -54,22 +33,20 @@
             </div>
         </div>
 
-        <span id="wrong_credentials" class="text-sm text-red-400"></span>
-
-
-        <div class="flex flex-col items-center justify-between mb-7">
+        <div class="flex flex-col items-center justify-between mb-2">
             <button onclick="registerUser()"
                 class="lg:w-64 flex py-2 px-4 justify-center text-base font-medium text-white bg-blue-500 rounded-2xl hover:bg-blue-400">
                 Подтвердить</button>
         </div>
-        <div class="flex flex-col items-center justify-between mb-2">
+
+        <span id="wrong_credentials" class="flex flex-col items-center justify-between text-sm text-red-400"></span>
+
+        <div class="flex flex-col items-center justify-between mb-2 mt-2">
             <p>Уже зарегистрированы?
                 <a class="font-bold" href="/login">Войти</a>
             </p>
         </div>
     </div>
 </div>
-
-<script src="{{ url_for('static', path='scripts/registration.js') }}"></script>
 
 {% endblock %}

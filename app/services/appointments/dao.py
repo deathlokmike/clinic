@@ -11,18 +11,8 @@ class AppointmentsDAO(BaseDAO):
     model = Appointments
 
     @classmethod
-    async def get_patient_appointments(cls, user_id: str) -> dict:
+    async def get_patient_appointments(cls, patient_id: str) -> dict:
         async with async_session() as session:
-            # with patient as(
-            #   select p.id 
-            #   from patients p left join 
-            #   users u on p.user_id=u.id
-            # where u.id = user_id);
-            patient = (select(
-                Patients.id)
-                .join(Users, Patients.user_id == Users.id, isouter=True)
-                .where(Users.id == user_id)
-                ).cte("patient")
             
             # select a.date_time, a.status, a.result, d.specialization, d.full_name, d.profile_photo_path 
             # from appointments a
@@ -38,7 +28,7 @@ class AppointmentsDAO(BaseDAO):
                 Doctors.profile_photo_path)
                 .join(Doctors, Appointments.doctor_id == Doctors.id, isouter=True)
                 .where(
-                    Appointments.patient_id == patient.c.id
+                    Appointments.patient_id == patient_id
                 ))
 
 
