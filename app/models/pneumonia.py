@@ -3,7 +3,7 @@ from app.services.database import Base
 
 
 class Pneumonia(Base):
-    __tablename__ = 'pneumonia'
+    __tablename__ = "pneumonia"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     type: Mapped[str] = mapped_column(nullable=False)  # Тип

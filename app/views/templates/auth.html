@@ -10,10 +10,11 @@
     <div
         class="relative bg-white px-4 pt-4 pb-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-5">
         <div class="flex items-center justify-between mb-5 text-2xl">
-            <h2>Регистрация</h2>
+            <h2>{{ context }}</h2>
         </div>
+
         <div class="flex items-center justify-between mb-5">
-            <input type="email" id="email" name="email" required
+            <input type="email" id="email" name="email"
                 class="block w-full py-1.5 pl-4 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 aa-input"
                 placeholder="Эл. почта">
         </div>
@@ -34,17 +35,16 @@
         </div>
 
         <div class="flex flex-col items-center justify-between mb-2">
-            <button onclick="registerUser()"
+            <button onclick="{{func_name}}"
                 class="lg:w-64 flex py-2 px-4 justify-center text-base font-medium text-white bg-blue-500 rounded-2xl hover:bg-blue-400">
-                Подтвердить</button>
+                {{ btn_name }}</button>
         </div>
 
         <span id="wrong_credentials" class="flex flex-col items-center justify-between text-sm text-red-400"></span>
 
         <div class="flex flex-col items-center justify-between mb-2 mt-2">
-            <p>Уже зарегистрированы?
-                <a class="font-bold" href="/login">Войти</a>
-            </p>
+            <p>{{pre_redirect_text}}</p>
+            <a class="font-bold" href="{{redirect_url}}">{{redirect_text}}</a>
         </div>
     </div>
 </div>

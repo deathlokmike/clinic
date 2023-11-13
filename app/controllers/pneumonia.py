@@ -4,10 +4,7 @@ from app.services.pneumonia.dao import PneumoniaDAO
 from app.models.users import Users
 from app.services.users.dependencies import get_current_user
 
-router = APIRouter(
-    prefix="/api/pneumonia",
-    tags=["Блок с пневмонией"]
-)
+router = APIRouter(prefix="/api/pneumonia", tags=["Блок с пневмонией"])
 
 
 @router.get("/all")
@@ -21,26 +18,26 @@ async def get_pneumonia_type(id_: int) -> SPneumoniaWithId | None:
 
 
 @router.post("", status_code=201)
-async def add_pneumonia_type(pneumonia_data: SPneumonia,
-                             user: Users = Depends(get_current_user)):
+async def add_pneumonia_type(
+    pneumonia_data: SPneumonia, user: Users = Depends(get_current_user)
+):
     await PneumoniaDAO.insert_value(
         type=pneumonia_data.type,
         pathogen=pneumonia_data.pathogen,
         morbidity=pneumonia_data.morbidity,
         mortality=pneumonia_data.mortality,
         severity=pneumonia_data.severity,
-        symptoms=pneumonia_data.symptoms
+        symptoms=pneumonia_data.symptoms,
     )
 
 
 @router.delete("/{id}", status_code=204)
-async def delete_pneumonia_type(id_: int,
-                                user: Users = Depends(get_current_user)):
+async def delete_pneumonia_type(id_: int, user: Users = Depends(get_current_user)):
     await PneumoniaDAO.delete_value(id=id_)
 
 
 @router.put("/{id}")
-async def update_pneumonia_type(id_: int,
-                                pneumonia: SPneumonia,
-                                user: Users = Depends(get_current_user)):
+async def update_pneumonia_type(
+    id_: int, pneumonia: SPneumonia, user: Users = Depends(get_current_user)
+):
     await PneumoniaDAO.update_values(id_, pneumonia)

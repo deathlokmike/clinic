@@ -38,4 +38,3 @@ class BaseDAO:
             query = delete(cls.model.__table__).filter_by(**filter_by)
             await session.execute(query)
             await session.commit()
-

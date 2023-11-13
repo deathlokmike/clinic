@@ -8,7 +8,7 @@ from app.services.users.dao import UsersDaO
 from app.models.users import Users
 
 
-_pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
+_pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def get_password_hash(password: str) -> str:
@@ -23,9 +23,7 @@ def create_access_token(data: dict) -> str:
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(days=1)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(
-        to_encode, settings.JWT_SECRET, settings.JWT_ALGORITHM
-    )
+    encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET, settings.JWT_ALGORITHM)
     return encoded_jwt
 
 

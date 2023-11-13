@@ -8,7 +8,7 @@ class SUserAppointment(BaseModel):
     status: int
     specialization: str
     full_name: str
-    profile_photo_path : str
+    profile_photo_path: str
 
 
 class SAppointmentsWithPatientInfo(BaseModel):

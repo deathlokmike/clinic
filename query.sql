@@ -1,4 +1,10 @@
-INSERT INTO users (id, email, password, role) 
+-- Active: 1699656739683@@127.0.0.1@5432@clinic_db
+
+INSERT INTO roles (id, name)
+VALUES
+(0, 'Пациент')
+
+INSERT INTO users (id, email, password, role_id) 
 VALUES
 ('f68d50db-f10a-48b4-acb1-8fae183cac3a', 'user1@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 0),
 ('4d527bd4-c872-4e2c-a56f-14260b345a64', 'user2@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 0),
@@ -74,10 +80,22 @@ VALUES
 ('b95ebf53-5483-4506-919e-9992388cb237', 'Хирург', '2015-12-18', 6, false, 9, 'Михаил Кузнецов', '1980-10-03', true, '5234045678', 'ул. Центральная, д. 72', '79890123456', 'img/default_profile_photo.png'),
 ('1dd85ba2-132b-496a-8a32-c7428e842417', 'Терапевт', '2019-08-14', 4, false, 10, 'Татьяна Новикова', '1993-01-22', false, '9876543210', 'ул. Парковая, д. 3', '79923456789', 'img/default_profile_photo.png');
 
-INSERT INTO appointments (id, patient_id, doctor_id, date_time, status, result)
+INSERT INTO appointments (id, patient_id, doctor_id, date_time, status)
 VALUES
-(1, 1, 1, '2023-11-19 10:00:00', 0, null),
-(2, 2, 2, '2023-10-19 10:00:00', 1, null),
-(3, 1, 3, '2023-11-19 10:00:00', 2, 'Проведен осмотр'),
-(4, 3, 4, '2023-10-20 10:00:00', 2, 'Жалоб нет'),
-(5, 1, 5, '2023-11-19 10:00:00', 3, null);
+(1, 1, 1, '2023-11-19 10:00:00', 0),
+(2, 2, 2, '2023-10-19 10:00:00', 1),
+(3, 1, 3, '2023-11-19 10:00:00', 2),
+(4, 3, 4, '2023-10-20 10:00:00', 2),
+(5, 1, 5, '2023-11-19 10:00:00', 3);
+
+INSERT INTO schedule (doctor_id, start_time, end_time)
+SELECT 
+    d.id as doctor_id,
+    date::timestamp + interval '8 hours' as start_time,
+    date::timestamp + interval '17 hours' as end_time
+FROM 
+    generate_series('2023-11-01'::date, '2023-11-30'::date, '1 day') date
+CROSS JOIN doctors d
+WHERE 
+    EXTRACT(ISODOW FROM date) < 6
+    AND d.resigned = false;

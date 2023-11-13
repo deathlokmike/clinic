@@ -6,7 +6,10 @@ from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.auth import router as router_auth
 from app.controllers.appointments import router as router_appointments
 from fastapi.middleware.cors import CORSMiddleware
+from app.exceptions import TokenAbsentException
+from fastapi import Request
 
+from starlette.responses import RedirectResponse
 
 app = FastAPI(title="Clinic API")
 app.mount("/static", StaticFiles(directory="app/views/static"), name="static")
@@ -31,3 +34,7 @@ app.add_middleware(
     allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers",
                    "Access-Control-Allow-Origin", "Authorization"],
 )
+
+@app.exception_handler(TokenAbsentException)
+async def unicorn_exception_handler(request: Request, exc: TokenAbsentException):
+    return RedirectResponse(url='/login')

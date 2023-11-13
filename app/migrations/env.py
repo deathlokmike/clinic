@@ -13,6 +13,10 @@ from app.models.patients import Patients
 from app.models.pneumonia import Pneumonia
 from app.models.appointments import Appointments
 from app.models.treatments import Treatments
+from app.models.roles import Roles
+from app.models.schedule import Schedule
+from alembic_utils.replaceable_entity import register_entities
+from app.migrations.triggers import delete_old, check_old
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,6 +29,7 @@ config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallbac
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+register_entities([delete_old, check_old])
 
 target_metadata = Base.metadata
 
@@ -67,9 +72,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

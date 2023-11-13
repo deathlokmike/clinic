@@ -4,13 +4,17 @@ from fastapi import Request, Depends
 from jose import jwt, ExpiredSignatureError
 
 from app.config import settings
-from app.exceptions import (TokenExpiredException, TokenAbsentException, UserIsNotPresentException)
+from app.exceptions import (
+    TokenExpiredException,
+    TokenAbsentException,
+    UserIsNotPresentException,
+)
 from app.services.users.dao import UsersDaO
 from app.models.users import Users
 
 
 def get_token(request: Request) -> str:
-    token = request.cookies.get('clinic_access_token')
+    token = request.cookies.get("clinic_access_token")
     if not token:
         raise TokenAbsentException
     return token
@@ -18,9 +22,7 @@ def get_token(request: Request) -> str:
 
 async def get_current_user(token: str = Depends(get_token)) -> Users:
     try:
-        payload = jwt.decode(
-            token, settings.JWT_SECRET, settings.JWT_ALGORITHM
-        )
+        payload = jwt.decode(token, settings.JWT_SECRET, settings.JWT_ALGORITHM)
     except ExpiredSignatureError:
         raise TokenExpiredException
 
