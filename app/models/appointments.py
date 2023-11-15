@@ -7,8 +7,8 @@ from sqlalchemy import ForeignKey, DateTime, Integer
 from app.services.database import Base
 
 if TYPE_CHECKING:
-    from app.models.doctors import Doctors
-    from app.models.patients import Patients
+    from app.models.users.doctors import Doctors
+    from app.models.users.patients import Patients
     from app.models.treatments import Treatments
 
 
@@ -23,4 +23,3 @@ class Appointments(Base):
 
     doctor: Mapped["Doctors"] = relationship(back_populates="appointments")
     patient: Mapped["Patients"] = relationship(back_populates="appointments")
-    treatment: Mapped["Treatments"] = relationship(back_populates="appointment")

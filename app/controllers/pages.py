@@ -50,7 +50,7 @@ async def get_user_appointments_page(
         context={
             "request": request,
             "appointments": info["appointments"],
-            "patient": info["patient"],
+            "personal_data": info["personal_data"],
         },
     )
 

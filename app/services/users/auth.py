@@ -5,7 +5,7 @@ from jose import jwt
 
 from app.config import settings
 from app.services.users.dao import UsersDaO
-from app.models.users import Users
+from app.models.users.users import Users
 
 
 _pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

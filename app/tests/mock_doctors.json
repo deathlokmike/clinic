@@ -1,0 +1,72 @@
+[
+  {
+    "pd_id": 20,
+    "specialization": "Хирург",
+    "date_employment": "2017-05-10",
+    "pre_work_experience": 6,
+    "resigned": false
+  },
+  {
+    "pd_id": 21,
+    "specialization": "Терапевт",
+    "date_employment": "2015-08-20",
+    "pre_work_experience": 8,
+    "resigned": false
+  },
+  {
+    "pd_id": 22,
+    "specialization": "Хирург",
+    "date_employment": "2016-12-08",
+    "pre_work_experience": 7,
+    "resigned": false
+  },
+  {
+    "pd_id": 23,
+    "specialization": "Терапевт",
+    "date_employment": "2019-03-25",
+    "pre_work_experience": 4,
+    "resigned": false
+  },
+  {
+    "pd_id": 24,
+    "specialization": "Хирург",
+    "date_employment": "2015-06-10",
+    "pre_work_experience": 8,
+    "resigned": false
+  },
+  {
+    "pd_id": 25,
+    "specialization": "Терапевт",
+    "date_employment": "2018-11-12",
+    "pre_work_experience": 5,
+    "resigned": true
+  },
+  {
+    "pd_id": 26,
+    "specialization": "Хирург",
+    "date_employment": "2017-09-30",
+    "pre_work_experience": 6,
+    "resigned": false
+  },
+  {
+    "pd_id": 27,
+    "specialization": "Терапевт",
+    "date_employment": "2016-04-15",
+    "pre_work_experience": 7,
+    "resigned": false
+  },
+  {
+    "pd_id": 28,
+    "specialization": "Хирург",
+    "date_employment": "2015-12-18",
+    "pre_work_experience": 6,
+    "resigned": false
+  },
+  {
+    "pd_id": 29,
+    "specialization": "Терапевт",
+    "date_employment": "2019-08-14",
+    "pre_work_experience": 4,
+    "resigned": false
+  }
+]

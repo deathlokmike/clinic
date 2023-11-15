@@ -5,3 +5,4 @@
 scratch.py
 page.py
 .vscode
+.pytest_cache

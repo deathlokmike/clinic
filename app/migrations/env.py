@@ -7,13 +7,14 @@ from alembic import context
 
 from app.services.database import Base
 from app.config import settings
-from app.models.users import Users
-from app.models.doctors import Doctors
-from app.models.patients import Patients
+from app.models.users.roles import Roles
+from app.models.users.users import Users
+from app.models.users.doctors import Doctors
+from app.models.users.patients import Patients
+from app.models.users.personal_data import PersonalData
 from app.models.pneumonia import Pneumonia
 from app.models.appointments import Appointments
 from app.models.treatments import Treatments
-from app.models.roles import Roles
 from app.models.schedule import Schedule
 from alembic_utils.replaceable_entity import register_entities
 from app.migrations.triggers import delete_old, check_old

@@ -65,14 +65,14 @@
                                 <div class="flex flex-col items-center justify-center p-4 -mt-16">
                                     <a class="relative block">
                                         <img alt="patient_image"
-                                            src="{{ url_for('static', path=patient.profile_photo_path) }}"
+                                            src="{{ url_for('static', path=personal_data.profile_photo_path) }}"
                                             class="w-16 h-16 mx-auto rounded-full ">
                                     </a>
-                                    <p class="mt-2 text-xl font-medium text-gray-800">
-                                        {{ patient.full_name }}</p>
+                                    <p class="mt-2 text-xl text-center font-medium text-gray-800">
+                                        {{ personal_data.full_name }}</p>
                                     <p class="flex items-center text-xs text-gray-400">
-                                        Дата рождения: {{patient.birth_day.strftime('%d.%m.%Y') }}</p>
-                                    {% if patient.gender %}
+                                        Дата рождения: {{personal_data.birth_day.strftime('%d.%m.%Y') }}</p>
+                                    {% if personal_data.gender %}
                                     <p class="text-xs text-gray-400">Пол: мужской</p>
                                     {% else %}
                                     <p class="text-xs text-gray-400">Пол: женский</p>

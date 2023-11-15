@@ -8,9 +8,8 @@ import uuid
 from app.services.database import Base
 
 if TYPE_CHECKING:
-    from app.models.doctors import Doctors
-    from app.models.patients import Patients
-    from app.models.roles import Roles
+    from app.models.users.personal_data import PersonalData
+    from app.models.users.roles import Roles
 
 
 class Users(Base):
@@ -24,6 +23,4 @@ class Users(Base):
     password: Mapped[str]
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
 
-    doctor: Mapped["Doctors"] = relationship(back_populates="user")
-    patient: Mapped["Patients"] = relationship(back_populates="user")
-    role: Mapped["Roles"] = relationship(back_populates="users")
+    personal_data: Mapped["PersonalData"] = relationship(back_populates="user")

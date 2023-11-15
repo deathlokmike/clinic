@@ -10,7 +10,8 @@ from app.exceptions import (
     UserIsNotPresentException,
 )
 from app.services.users.dao import UsersDaO
-from app.models.users import Users
+from app.models.users.users import Users
+from app.models.users.personal_data import PersonalData
 
 
 def get_token(request: Request) -> str:
@@ -39,3 +40,7 @@ async def get_current_user(token: str = Depends(get_token)) -> Users:
         raise UserIsNotPresentException
 
     return user
+
+
+async def get_personal_data(user: Users = Depends(get_current_user)) -> PersonalData:
+    return await UsersDaO.get_personal_data_by_id(user.id)

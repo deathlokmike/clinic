@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy import String, ForeignKey
-
 from app.services.database import Base
 
 if TYPE_CHECKING:
@@ -18,5 +17,3 @@ class Treatments(Base):
     complaints: Mapped[str] = mapped_column(String, nullable=True)
     examinations: Mapped[str] = mapped_column(String, nullable=True)
     diagnosis: Mapped[int] = mapped_column(String, nullable=True)
-
-    appointment: Mapped["Appointments"] = relationship(back_populates="treatment")

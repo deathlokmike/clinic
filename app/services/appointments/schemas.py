@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from datetime import datetime
-from app.services.patients.schemas import SExtendedUser
+
+from tomlkit import date
+from app.services.users.schemas import SExtendedUser
 
 
 class SUserAppointment(BaseModel):
@@ -14,3 +16,14 @@ class SUserAppointment(BaseModel):
 class SAppointmentsWithPatientInfo(BaseModel):
     patient: SExtendedUser
     appointments: list[SUserAppointment]
+
+
+class SFreeDoctorsAppointments(BaseModel):
+    full_name: str
+    experience: int
+    free_appointments: list[datetime]
+
+
+class SFreeAppointments(BaseModel):
+    specialization: str
+    doctors: list[SFreeDoctorsAppointments]

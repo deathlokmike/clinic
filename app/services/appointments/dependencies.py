@@ -2,7 +2,7 @@ from app.services.appointments.dao import AppointmentsDAO
 from datetime import date
 from fastapi import Depends
 from app.services.users.dependencies import get_current_user
-from app.models.users import Users
+from app.models.users.users import Users
 
 
 def get_free_intervals():

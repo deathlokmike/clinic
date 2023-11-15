@@ -1,0 +1,224 @@
+[
+    {
+        "id": "f68d50db-f10a-48b4-acb1-8fae183cac3a",
+        "email": "user1@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "4d527bd4-c872-4e2c-a56f-14260b345a64",
+        "email": "user2@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "4a7f20f7-e92d-4925-a580-2b965e2da0a6",
+        "email": "user3@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "bead8e61-68be-4f39-a459-bf6c906b37c1",
+        "email": "user4@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "98367c58-9574-4c54-ac91-da4c764c75aa",
+        "email": "user5@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "cb56fdbb-fd02-4fd8-a3d9-3487b54f21cc",
+        "email": "user6@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "a5c42a22-3fa0-4bf3-b489-5d4fc9d7ea6f",
+        "email": "user7@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "b6bac282-22ae-4128-8478-7f61c54b6487",
+        "email": "user8@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "6434ece9-19a9-45fe-ba04-ba8648db5f16",
+        "email": "user9@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc",
+        "email": "user10@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "982eeb52-667c-4acb-9d83-18d7d48f518a",
+        "email": "user11@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "2a4e3522-f10f-4fdf-a714-3e58f451c92e",
+        "email": "user12@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "95291318-f3fa-4f0f-b3a0-8908bfe391b6",
+        "email": "user13@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "3c1fcb41-9c78-4f0f-b820-9711ffc87a6f",
+        "email": "user14@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "395ed07f-f6eb-4e74-867a-ae6498bc2f2f",
+        "email": "user15@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "d384f677-9f23-46d4-a790-f8f29abb6f3f",
+        "email": "user16@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "5632918c-135b-4c49-8af5-89ed75158fb1",
+        "email": "user17@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "b5eaeb53-2cce-4d7c-855b-08920d66d6b7",
+        "email": "user18@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "e7800146-efbb-4bce-950e-f7fbf33613eb",
+        "email": "user19@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "73443f74-ef2b-4797-b6af-dc0ff6f525eb",
+        "email": "user20@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "d9244ec4-dc91-4f0b-b171-6e08f0f60daa",
+        "email": "user21@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "21f579ae-fcd7-4029-b3cd-1d912fe631a7",
+        "email": "user22@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "e11d2790-3cf6-44f0-9bc6-ce2c93b7eb7f",
+        "email": "user23@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "0de0b82a-76ae-4efe-99d2-1e282f332d70",
+        "email": "user24@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "9e204d2e-01bb-44f8-857f-e74cd864d6b2",
+        "email": "user25@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "aadb1517-d708-45d2-a9ec-15ad0ab1a81d",
+        "email": "user26@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "3bf56fac-b27e-485b-82de-a251070ed5a3",
+        "email": "user27@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "6e4bf18d-01de-4c16-ac03-bfbf16d61b55",
+        "email": "user28@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "b95ebf53-5483-4506-919e-9992388cb237",
+        "email": "user29@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "1dd85ba2-132b-496a-8a32-c7428e842417",
+        "email": "user30@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "90598678-86c2-432d-b7be-05c3343d9d87",
+        "email": "user31@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "700137e5-b363-444d-88a6-5a260282c2c3",
+        "email": "user32@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "a2b8f394-a8ea-4105-9900-728972825a49",
+        "email": "user33@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "f199ad27-6d92-4fc4-8ea7-0d543b5ab2d9",
+        "email": "user34@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "e6a7c9a3-91a5-476c-a912-ca2ed3b9c814",
+        "email": "user35@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "34fa3bc1-d570-4abc-a80d-23f23864722f",
+        "email": "user36@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    },
+    {
+        "id": "ec7cc5d4-fc10-4a63-82dc-2c4f02f9b4a0",
+        "email": "user37@example.com",
+        "password": "$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66",
+        "role_id": 0
+    }
+]
