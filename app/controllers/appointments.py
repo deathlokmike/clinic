@@ -3,11 +3,11 @@ from app.models.users.personal_data import PersonalData
 from app.services.users.dependencies import get_personal_data
 from app.services.appointments.dao import AppointmentsDAO
 from app.services.patients.dao import PatientsDAO
-from app.services.doctors.dao import DoctorsDAO
 from app.services.users.schemas import SExtendedUser
-from app.services.appointments.schemas import SAppointmentsWithPatientInfo, SFreeAppointments
+from app.services.appointments.schemas import SAppointmentsWithPatientInfo
+from app.services.appointments.dependencies import get_free_appointments
+from app.services.doctors.schemas import SAvailableAppointments
 from pydantic import TypeAdapter
-from datetime import date
 
 
 router = APIRouter(prefix="/api/appointments", tags=["Записи на прием"])
@@ -23,7 +23,10 @@ async def get_patient_info_and_appointments(
     return {"personal_data": personal_data, "appointments": appointments}
 
 
-@router.get("/free")
-async def get_free_appointments(date: date) -> SFreeAppointments:
-    busy_appointments = await DoctorsDAO.get_busy(date)
-    return busy_appointments
+@router.get("/available")
+async def get_available_appointments(
+    available_appointments: list[SAvailableAppointments] = Depends(
+        get_free_appointments
+    ),
+) -> list[SAvailableAppointments]:
+    return available_appointments

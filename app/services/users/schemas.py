@@ -1,5 +1,4 @@
 from pydantic import BaseModel, EmailStr
-
 from datetime import date
 
 
@@ -19,3 +18,14 @@ class SSensitiveSExtendedUser(SExtendedUser):
     passport_data: str
     address: str
     phone_number: str
+
+
+class SPersonalData(BaseModel):
+    first_name: str
+    second_name: str
+    last_name: str
+    profile_photo_path: str
+
+    @property
+    def full_name(self) -> str:
+        return self.last_name + " " + self.first_name + " " + self.second_name

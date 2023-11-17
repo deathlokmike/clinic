@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from app.controllers.appointments import get_patient_info_and_appointments
+from app.controllers.appointments import (
+    get_patient_info_and_appointments,
+    get_available_appointments,
+)
 
 
 router = APIRouter(tags=["Фронтенд"])
@@ -55,10 +58,12 @@ async def get_user_appointments_page(
     )
 
 
-@router.get("/appointment", response_class=HTMLResponse)
-async def get_new_appointment_page(request: Request):
-    colors = ["Red", "Blue", "Black", "Orange"]
+@router.get("/book_appointment", response_class=HTMLResponse)
+async def get_new_appointment_page(
+    request: Request, available=Depends(get_available_appointments)
+):
     return templates.TemplateResponse(
-        name="new_appointment.html",
-        context={"request": request, "colors": colors},
+        name="window.html",
+        context={"request": request, "available": available},
     )
+
