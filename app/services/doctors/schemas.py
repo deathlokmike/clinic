@@ -26,6 +26,7 @@ class SAppointmentsByDate(BaseModel):
 
 
 class SDoctorWithFreeAppointments(BaseModel):
+    id: int
     full_name: str
     experience: int
     profile_photo_path: str

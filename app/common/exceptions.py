@@ -21,7 +21,7 @@ class InsufficientRightsException(ClinicBaseException):
 
 class IncorrectUserOrPassword(ClinicBaseException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    detail = 'Неверный логин или пароль'
+    detail = "Неверный логин или пароль"
 
 
 class TokenExpiredException(ClinicBaseException):
@@ -36,3 +36,8 @@ class TokenAbsentException(ClinicBaseException):
 
 class UserIsNotPresentException(ClinicBaseException):
     status_code = status.HTTP_401_UNAUTHORIZED
+
+
+class AppointmentNotAvailableException(ClinicBaseException):
+    status_code = status.HTTP_409_CONFLICT
+    detail = "Запись к врачу недоступна"

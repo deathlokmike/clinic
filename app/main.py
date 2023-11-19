@@ -6,7 +6,7 @@ from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.auth import router as router_auth
 from app.controllers.appointments import router as router_appointments
 from fastapi.middleware.cors import CORSMiddleware
-from app.exceptions import TokenAbsentException
+from app.common.exceptions import TokenAbsentException
 from fastapi import Request
 
 from starlette.responses import RedirectResponse

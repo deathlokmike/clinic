@@ -4,7 +4,7 @@ from fastapi import Request, Depends
 from jose import jwt, ExpiredSignatureError
 
 from app.config import settings
-from app.exceptions import (
+from app.common.exceptions import (
     TokenExpiredException,
     TokenAbsentException,
     UserIsNotPresentException,
@@ -38,7 +38,6 @@ async def get_current_user(token: str = Depends(get_token)) -> Users:
     user = await UsersDaO.get_by_id(user_id)
     if not user:
         raise UserIsNotPresentException
-
     return user
 
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Response
 
-from app.exceptions import UserAlreadyExistsException, IncorrectUserOrPassword
+from app.common.exceptions import UserAlreadyExistsException, IncorrectUserOrPassword
 from app.services.users.auth import (
     get_password_hash,
     authenticate_user,
