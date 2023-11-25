@@ -1,4 +1,4 @@
-from app.services.dao.base import BaseDAO
+from app.services.base_dao import BaseDAO
 from app.models.users.patients import Patients
 
 

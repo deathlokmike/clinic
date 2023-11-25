@@ -1,9 +1,8 @@
-import datetime
 from app.models.appointments import Appointments
 from app.models.users.personal_data import PersonalData
-from app.services.dao.base import BaseDAO
+from app.services.base_dao import BaseDAO
 from app.models.users.doctors import Doctors
-from app.services.dao.base import BaseDAO
+
 from sqlalchemy import select, func
 from app.services.database import async_session
 from sqlalchemy.orm import with_loader_criteria, joinedload, selectinload
@@ -30,13 +29,12 @@ class DoctorsDAO(BaseDAO):
 
             result = await session.execute(query)
             return jsonable_encoder(result.scalars().all())
-        
+
     @classmethod
     async def get_personal_data(cls, doctor_id: int):
         async with async_session() as session:
             query = (
-                select(Doctors.id,
-                       PersonalData.full_name)
+                select(Doctors.id, PersonalData.full_name)
                 .join(PersonalData, Doctors.pd_id == PersonalData.id)
                 .where(Doctors.id == doctor_id)
             )

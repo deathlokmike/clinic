@@ -53,6 +53,20 @@ function clearElement(element) {
     }
 }
 
+class SelectedData {
+    constructor() {
+        this.date = null;
+        this.time = null;
+        this.doctorId = null;
+    }
+
+    getDateTime() {
+        console.log(this.date + "T" + this.time);
+        let dateTime = Date.parse(this.date + "T" + this.time);
+        return dateTime;
+    }
+}
+
 class BookAppointment {
     constructor() {
         this.specialization = document.getElementById("specialization");
@@ -60,12 +74,15 @@ class BookAppointment {
         this.dates = document.getElementById("dates");
         this.times = document.getElementById("times");
         this.confirm = document.getElementById("confirm-button");
+        this.confirm.addEventListener("click", this.sendToApi.bind(this));
 
         this.selectedSpecialization = null;
         this.selectedDoctor = null;
         this.selectedDate = null;
         this.selectedTime = null;
         this.data = null;
+
+        this.selectedData = new SelectedData();
     }
 
     async init() {
@@ -126,6 +143,7 @@ class BookAppointment {
                 card.classList.add("ring-green-300", "outline-none", "ring-2", "shadow-md");
                 card.classList.remove("hover:bg-gray-200");
                 this.selectedDoctor = card;
+                this.selectedData.doctorId = doctor.id;
                 this.fillDates.bind(this)(doctor.free_appointments);
             });
             this.doctors.appendChild(card);
@@ -148,6 +166,7 @@ class BookAppointment {
                 bubble.classList.add("ring-green-300", "outline-none", "ring-2", "shadow-md");
                 bubble.classList.remove("hover:bg-gray-200");
                 this.selectedDate = bubble;
+                this.selectedData.date = date.date;
                 this.fillTimes.bind(this)(date.time);
             });
             this.dates.appendChild(bubble);
@@ -167,51 +186,34 @@ class BookAppointment {
                 bubble.classList.add("ring-green-300", "outline-none", "ring-2", "shadow-md");
                 bubble.classList.remove("hover:bg-gray-200");
                 this.selectedTime = bubble;
+                console.log(time);
+                this.selectedData.time = time;
                 this.confirm.classList.remove("hidden");
             });
             this.times.appendChild(bubble);
         }
     }
 
-    sendToApi() {
-        
+    async sendToApi() {
+        const url = "/api/appointments/book";
+
+        let data = {
+            doctor_id: this.selectedData.doctorId,
+            date_time: this.selectedData.getDateTime.bind(this.selectedData)(),
+        };
+
+        await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        }).then(response => {
+            if (response.status === 200) {
+                window.alert("Успешно");
+            } else {
+                response.json().then(value => {
+                    window.alert("Ошибка");
+                })
+            }
+        });
     }
 }
-
-
-
-
-
-// // Функция для отправки данных на api
-// function sendToApi() {
-//     // Предположим, что api - это адрес, куда нужно отправить данные
-//     let api = "...";
-//     // Создаем объект с данными
-//     let data = {
-//         specialization: selectedSpecialization.innerText,
-//         doctor: selectedDoctor.innerText,
-//         date: selectedDate.innerText,
-//         time: selectedTime.innerText
-//     };
-//     // Создаем запрос
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", api, true);
-//     xhr.setRequestHeader("Content-Type", "application/json");
-//     // Отправляем запрос с данными в формате JSON
-//     xhr.send(JSON.stringify(data));
-//     // Обрабатываем ответ
-//     xhr.onload = function () {
-//         if (xhr.status == 200) {
-//             // Если все успешно, выводим сообщение
-//             alert("Ваша запись подтверждена!");
-//         } else {
-//             // Если что-то пошло не так, выводим ошибку
-//             alert("Произошла ошибка: " + xhr.statusText);
-//         }
-//     };
-// }
-
-// Добавляем обработчик клика на кнопку подтверждения
-// confirm.addEventListener("click", sendToApi);
-
-// Заполняем элемент облачками со специализациями при загрузке страницы

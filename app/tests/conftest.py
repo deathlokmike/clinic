@@ -1,7 +1,6 @@
 import asyncio
 import datetime
 from datetime import date
-from pydoc import doc
 
 import pytest
 import json
@@ -24,7 +23,9 @@ import uuid
 @pytest.fixture(scope="session", autouse=True)
 async def prepare_database():
     assert settings.MODE == "TEST"
-
+    
+    
+    
     def get_raw() -> str:
         def last_day_of_month():
             next_month = date.today().replace(day=28) + datetime.timedelta(days=4)
@@ -33,7 +34,7 @@ async def prepare_database():
         return text(
             f"""INSERT INTO schedule (start_time, end_time) SELECT date::timestamp + interval '8 hours' as start_time, date::timestamp + interval '17 hours' as end_time FROM generate_series('{date.today()}'::date, '{last_day_of_month()}'::date, '1 day') date WHERE EXTRACT(ISODOW FROM date) < 6"""
         )
-
+        
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
@@ -58,7 +59,9 @@ async def prepare_database():
         p["user_id"] = uuid.UUID(p["user_id"])
 
     for d in doctors:
-        d["date_employment"] = datetime.datetime.strptime(d["date_employment"], "%Y-%m-%d")
+        d["date_employment"] = datetime.datetime.strptime(
+            d["date_employment"], "%Y-%m-%d"
+        )
 
     for a in appointments:
         a["date_time"] = datetime.datetime.strptime(a["date_time"], "%Y-%m-%d %H:%M:%S")

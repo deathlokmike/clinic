@@ -15,8 +15,8 @@ from app.services.appointments.dao import AppointmentsDAO
         (datetime.datetime(year=2023, month=11, day=23, hour=7), False),
         (datetime.datetime(year=2023, month=11, day=23, hour=17), False),
         (datetime.datetime(year=2023, month=11, day=23, hour=16), True),
-        (datetime.datetime(year=2023, month=11, day=20, hour=8), True),
-        (datetime.datetime(year=2023, month=11, day=20, hour=9), True),
+        (datetime.datetime(year=2023, month=11, day=24, hour=8), True),
+        (datetime.datetime(year=2023, month=11, day=24, hour=9), True),
     ],
 )
 async def test_schedule_between(date_time, res: bool):

@@ -1,6 +1,6 @@
 import datetime
 from app.services.database import async_session
-from app.services.dao.base import BaseDAO
+from app.services.base_dao import BaseDAO
 from app.models.schedule import Schedule
 from sqlalchemy import select, between, and_
 

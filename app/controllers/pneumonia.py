@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from app.services.pneumonia.schemas import SPneumonia, SPneumoniaWithId
-from app.services.pneumonia.dao import PneumoniaDAO
+from app.services.content.pneumonia.schemas import SPneumonia, SPneumoniaWithId
+from app.services.content.pneumonia.dao import PneumoniaDAO
 from app.models.users.users import Users
 from app.services.users.dependencies import get_current_user
 
