@@ -1,33 +1,24 @@
 [tool.poetry]
-name = "pneumonia"
+name = "md-clinic"
 version = "0.1.0"
-description = ""
-authors = ["Mikhail Drozdov <deathlokmike@gmail.com>, Daniil Minoransky <some@some.com>"]
+description = "this is a demo clinic designed for testing and practicing development for FastAPI"
+authors = ["Mikhail Drozdov <deathlokmike@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "^0.103.1"
-sqlalchemy = "^2.0.21"
-pydantic-settings = "^2.0.3"
-jinja2 = "^3.1.2"
-python-jose = "^3.3.0"
+fastapi = "^0.104.1"
+sqlalchemy = "^2.0.23"
+alembic = "^1.13.0"
+uvicorn = "^0.24.0.post1"
+pydantic-settings = "^2.1.0"
+asyncpg = "^0.29.0"
+greenlet = "^3.0.2"
 passlib = "^1.7.4"
-alembic = "^1.12.0"
-asyncpg = "^0.28.0"
-pydantic = {extras = ["email"], version = "^2.4.2"}
-bcrypt = "^4.0.1"
-prometheus-fastapi-instrumentator = "^6.1.0"
-alembic-utils = "^0.8.2"
+python-jose = "^3.3.0"
+email-validator = "^2.1.0.post1"
+jinja2 = "^3.1.2"
 
-
-[tool.poetry.group.dev.dependencies]
-uvicorn = "^0.23.2"
-isort = "^5.12.0"
-black = "^23.11.0"
-pytest = "^7.4.3"
-pytest-asyncio = "^0.21.1"
-sqlalchemy-utils = "^0.41.1"
 
 [build-system]
 requires = ["poetry-core"]
