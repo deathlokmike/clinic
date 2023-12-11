@@ -16,29 +16,16 @@ from app.models.treatments import Treatments
 from app.models.schedule import Schedule
 from app.config import settings
 from sqlalchemy import insert
-from sqlalchemy.sql import text
 import uuid
 
 
 @pytest.fixture(scope="session", autouse=True)
 async def prepare_database():
     assert settings.MODE == "TEST"
-    
-    
-    
-    def get_raw() -> str:
-        def last_day_of_month():
-            next_month = date.today().replace(day=28) + datetime.timedelta(days=4)
-            return next_month - datetime.timedelta(days=next_month.day)
 
-        return text(
-            f"""INSERT INTO schedule (start_time, end_time) SELECT date::timestamp + interval '8 hours' as start_time, date::timestamp + interval '17 hours' as end_time FROM generate_series('{date.today()}'::date, '{last_day_of_month()}'::date, '1 day') date WHERE EXTRACT(ISODOW FROM date) < 6"""
-        )
-        
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
-        await conn.execute(get_raw())
 
     def open_mock_json(model: str):
         with open(f"app/tests/mock_{model}.json", encoding="utf8") as file:

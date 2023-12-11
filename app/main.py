@@ -7,11 +7,19 @@ from app.controllers.auth import router as router_auth
 from app.controllers.appointments import router as router_appointments
 from fastapi.middleware.cors import CORSMiddleware
 from app.common.exceptions import TokenAbsentException
+from app.services.schedule.tasks import set_actual_schedule
 from fastapi import Request
-
+import asyncio
+from contextlib import asynccontextmanager
 from starlette.responses import RedirectResponse
 
-app = FastAPI(title="Clinic API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    asyncio.ensure_future(set_actual_schedule())
+    yield
+
+
+app = FastAPI(title="Clinic API", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="app/views/static"), name="static")
 
 main_router = APIRouter()

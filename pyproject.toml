@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "md-clinic"
 version = "0.1.0"
-description = "this is a demo clinic designed for testing and practicing development for FastAPI"
+description = "This is a demo clinic designed for testing and practicing development for FastAPI"
 authors = ["Mikhail Drozdov <deathlokmike@gmail.com>"]
 readme = "README.md"
 
@@ -18,7 +18,12 @@ passlib = "^1.7.4"
 python-jose = "^3.3.0"
 email-validator = "^2.1.0.post1"
 jinja2 = "^3.1.2"
+bcrypt = "^4.1.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+isort = "^5.13.0"
 
 [build-system]
 requires = ["poetry-core"]

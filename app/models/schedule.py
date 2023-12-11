@@ -6,7 +6,5 @@ from app.services.database import Base
 
 class Schedule(Base):
     __tablename__ = "schedule"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    start_time: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    start_time: Mapped[datetime] = mapped_column(DateTime, primary_key=True)
     end_time: Mapped[datetime] = mapped_column(DateTime, nullable=False)

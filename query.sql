@@ -1,4 +1,4 @@
--- Active: 1699656739683@@127.0.0.1@5432@test_db
+-- Active: 1700866669137@@127.0.0.1@5432@clinic_db
 
 
 INSERT INTO roles (id, name)
@@ -121,19 +121,4 @@ VALUES
 (3, 1, 3, '2023-11-19 10:00:00', 2),
 (4, 3, 4, '2023-10-20 10:00:00', 2),
 (5, 1, 5, '2023-11-19 10:00:00', 3);
-
-INSERT INTO schedule (start_time, end_time)
-SELECT 
-    date::timestamp + interval '8 hours' as start_time,
-    date::timestamp + interval '17 hours' as end_time
-FROM 
-    generate_series('2023-11-01'::date, '2023-11-30'::date, '1 day') date
-WHERE 
-    EXTRACT(ISODOW FROM date) < 6
-
-
-INSERT INTO schedule (start_time, end_time) 
-SELECT date::timestamp + interval '8 hours' as start_time, 
-date::timestamp + interval '17 hours' as end_time 
-FROM generate_series('2023-11-15'::date, '2023-11-30'::date, '1 day') date 
-WHERE EXTRACT(ISODOW FROM date) < 6
+    

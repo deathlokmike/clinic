@@ -19,7 +19,7 @@ async def register_user(user_data: SUserAuth):
     if existing_user:
         raise UserAlreadyExistsException
     hashed_password = get_password_hash(user_data.password)
-    await UsersDaO.insert_value(email=user_data.email, password=hashed_password, role=0)
+    await UsersDaO.insert_value(email=user_data.email, password=hashed_password, role_id=0)
 
 
 @router.post("/login")

@@ -61,7 +61,6 @@ class SelectedData {
     }
 
     getDateTime() {
-        console.log(this.date + "T" + this.time);
         let dateTime = Date.parse(this.date + "T" + this.time);
         return dateTime;
     }
@@ -73,7 +72,9 @@ class BookAppointment {
         this.doctors = document.getElementById("doctors");
         this.dates = document.getElementById("dates");
         this.times = document.getElementById("times");
-        this.confirm = document.getElementById("confirm-button");
+        confirm = document.getElementById("confirm-button");
+        this.confirm = confirm.cloneNode(true);
+        confirm.parentNode.replaceChild(this.confirm, confirm);
         this.confirm.addEventListener("click", this.sendToApi.bind(this));
 
         this.selectedSpecialization = null;
@@ -158,7 +159,6 @@ class BookAppointment {
         this.confirm.classList.add("hidden");
         for (let date of datesList) {
             let bubble = createBubble(date.date, () => {
-                console.log(date.date);
                 if (this.selectedDate) {
                     this.selectedDate.classList.remove("ring-green-300", "outline-none", "ring-2", "shadow-md");
                     this.selectedDate.classList.add("hover:bg-gray-200")
@@ -186,7 +186,6 @@ class BookAppointment {
                 bubble.classList.add("ring-green-300", "outline-none", "ring-2", "shadow-md");
                 bubble.classList.remove("hover:bg-gray-200");
                 this.selectedTime = bubble;
-                console.log(time);
                 this.selectedData.time = time;
                 this.confirm.classList.remove("hidden");
             });
