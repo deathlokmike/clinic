@@ -1,0 +1,8 @@
+{
+    "context": "Registrera",
+    "btn_name": "Bekräfta",
+    "pre_redirect_text": "Redan registrerad?",
+    "redirect_text": "Logga",
+    "email": "Email",
+    "password": "Lösenord"
+}

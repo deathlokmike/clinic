@@ -1,0 +1,8 @@
+{
+    "context": "Sign up",
+    "btn_name": "Confirm",
+    "pre_redirect_text": "Already registered?",
+    "redirect_text": "Log in",
+    "email": "Email",
+    "password": "Password"
+}

@@ -5,6 +5,7 @@ from app.controllers.appointments import (
     get_patient_info_and_appointments,
     get_available_appointments,
 )
+from app.lang.translator import Translator
 
 
 router = APIRouter(tags=["Фронтенд"])
@@ -14,32 +15,30 @@ templates = Jinja2Templates(directory="app/views/templates")
 
 @router.get("/registration", response_class=HTMLResponse)
 async def get_registration_page(request: Request):
+    translator = Translator(request.state.locale)
     return templates.TemplateResponse(
         name="auth.html",
         context={
             "request": request,
-            "context": "Регистрация",
             "func_name": "registerUser()",
-            "btn_name": "Подтвердить",
-            "pre_redirect_text": "Уже зарегистрированы?",
             "redirect_url": "/login",
-            "redirect_text": "Войти",
+            **translator.get_translate("registration"),
+            **translator.get_translate("header")
         },
     )
 
 
 @router.get("/login", response_class=HTMLResponse)
 async def get_login_page(request: Request):
+    translator = Translator(request.state.locale)
     return templates.TemplateResponse(
         name="auth.html",
         context={
             "request": request,
-            "context": "Вход в систему",
             "func_name": "loginUser()",
-            "btn_name": "Войти",
-            "pre_redirect_text": "Не зарегистрированы?",
             "redirect_url": "/registration",
-            "redirect_text": "Создать аккаунт",
+            **translator.get_translate("login"),
+            **translator.get_translate("header")
         },
     )
 

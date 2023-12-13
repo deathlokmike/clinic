@@ -1,0 +1,8 @@
+{
+    "context": "Регистрация",
+    "btn_name": "Подтвердить",
+    "pre_redirect_text": "Уже зарегистрированы?",
+    "redirect_text": "Войти",
+    "email": "Эл. почта",
+    "password": "Пароль"
+}

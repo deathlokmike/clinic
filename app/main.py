@@ -12,6 +12,7 @@ from fastapi import Request
 import asyncio
 from contextlib import asynccontextmanager
 from starlette.responses import RedirectResponse
+from app.middlewares.i18n import I18nMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,6 +43,7 @@ app.add_middleware(
     allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers",
                    "Access-Control-Allow-Origin", "Authorization"],
 )
+app.add_middleware(I18nMiddleware)
 
 @app.exception_handler(TokenAbsentException)
 async def unicorn_exception_handler(request: Request, exc: TokenAbsentException):
