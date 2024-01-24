@@ -1,7 +1,4 @@
-import asyncio
 import datetime
-from datetime import date
-
 import pytest
 import json
 from app.services.database import Base, async_session, engine
@@ -19,6 +16,7 @@ from sqlalchemy import insert
 import uuid
 
 
+@pytest.mark.asyncio
 @pytest.fixture(scope="session", autouse=True)
 async def prepare_database():
     assert settings.MODE == "TEST"
@@ -37,6 +35,7 @@ async def prepare_database():
     doctors = open_mock_json("doctors")
     patients = open_mock_json("patients")
     appointments = open_mock_json("appointments")
+    schedule = open_mock_json("schedule")
 
     for u in users:
         u["id"] = uuid.UUID(u["id"])
@@ -53,6 +52,13 @@ async def prepare_database():
     for a in appointments:
         a["date_time"] = datetime.datetime.strptime(a["date_time"], "%Y-%m-%d %H:%M:%S")
 
+    for s in schedule:
+        s["start_time"] = datetime.datetime.strptime(
+            s["start_time"], "%Y-%m-%d %H:%M:%S"
+        )
+        s["end_time"] = datetime.datetime.strptime(
+            s["end_time"], "%Y-%m-%d %H:%M:%S")
+
     async with async_session() as session:
         for Model, values in [
             (Roles, roles),
@@ -61,15 +67,9 @@ async def prepare_database():
             (Doctors, doctors),
             (Patients, patients),
             (Appointments, appointments),
+            (Schedule, schedule),
         ]:
             query = insert(Model).values(values)
             await session.execute(query)
 
         await session.commit()
-
-
-@pytest.fixture(scope="session")
-def event_loop(request):
-    loop = asyncio.get_event_loop_policy().new_event_loop()
-    yield loop
-    loop.close()

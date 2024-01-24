@@ -1,8 +1,8 @@
 .idea
 *.pyc
 .env
-архитектура.txt
 scratch.py
 page.py
 .vscode
 .pytest_cache
+.DS_Store

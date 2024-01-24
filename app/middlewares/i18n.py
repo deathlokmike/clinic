@@ -1,3 +1,4 @@
+from fastapi.background import P
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
 
@@ -7,7 +8,7 @@ class I18nMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
         locale = request.headers.get("Accept-Language", None) or "en-US"
-        if locale not in self.WHITE_LIST:
+        if locale[:5] not in self.WHITE_LIST:
             locale = "en-US"
-        request.state.locale = locale
+        request.state.locale = locale[:5]
         return await call_next(request)

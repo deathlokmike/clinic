@@ -47,12 +47,14 @@ async def get_login_page(request: Request):
 async def get_user_appointments_page(
     request: Request, info=Depends(get_patient_info_and_appointments)
 ):
+    translator = Translator(request.state.locale)
     return templates.TemplateResponse(
         name="appointments.html",
         context={
             "request": request,
             "appointments": info["appointments"],
             "personal_data": info["personal_data"],
+            **translator.get_translate("header")
         },
     )
 

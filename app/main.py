@@ -1,3 +1,4 @@
+from re import A
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.routing import APIRouter
@@ -13,6 +14,8 @@ import asyncio
 from contextlib import asynccontextmanager
 from starlette.responses import RedirectResponse
 from app.middlewares.i18n import I18nMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,7 +24,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Clinic API", lifespan=lifespan)
-app.mount("/static", StaticFiles(directory="app/views/static"), name="static")
+
+
+instrumentator = Instrumentator(
+    should_group_status_codes=False, excluded_handlers=[".*admin.*", "/metrics"]
+)
+
+instrumentator.instrument(app).expose(app)
 
 main_router = APIRouter()
 main_router.include_router(router_view)
@@ -30,6 +39,7 @@ main_router.include_router(router_pneumonia)
 main_router.include_router(router_appointments)
 
 app.include_router(main_router)
+app.mount("/static", StaticFiles(directory="app/views/static"), name="static")
 
 origins = [
     "http://localhost:8000",
@@ -40,11 +50,17 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
-    allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers",
-                   "Access-Control-Allow-Origin", "Authorization"],
+    allow_headers=[
+        "Content-Type",
+        "Set-Cookie",
+        "Access-Control-Allow-Headers",
+        "Access-Control-Allow-Origin",
+        "Authorization",
+    ],
 )
 app.add_middleware(I18nMiddleware)
 
+
 @app.exception_handler(TokenAbsentException)
 async def unicorn_exception_handler(request: Request, exc: TokenAbsentException):
-    return RedirectResponse(url='/login')
+    return RedirectResponse(url="/login")
