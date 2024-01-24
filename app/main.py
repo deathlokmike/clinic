@@ -1,4 +1,3 @@
-from re import A
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.routing import APIRouter
