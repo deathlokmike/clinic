@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Date, String
+from sqlalchemy import ForeignKey, Date, String, Boolean
 from datetime import date
 from app.services.database import Base
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -17,15 +17,15 @@ class PersonalData(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), nullable=False)
-    first_name: Mapped[str]
+    first_name: Mapped[str] = mapped_column(String, nullable=True)
     second_name: Mapped[str] = mapped_column(String, nullable=True)
-    last_name: Mapped[str]
-    birth_day: Mapped[date] = mapped_column(Date, nullable=False)
-    gender: Mapped[bool]
-    passport_data: Mapped[str]
-    address: Mapped[str]
-    phone_number: Mapped[str]
-    profile_photo_path: Mapped[str]
+    last_name: Mapped[str] = mapped_column(String, nullable=True)
+    birth_day: Mapped[date] = mapped_column(Date, nullable=True)
+    gender: Mapped[bool] = mapped_column(Boolean, nullable=True)
+    passport_data: Mapped[str] = mapped_column(String, nullable=True)
+    address: Mapped[str] = mapped_column(String, nullable=True)
+    phone_number: Mapped[str] = mapped_column(String, nullable=True)
+    profile_photo_path: Mapped[str] = mapped_column(String, nullable=True)
 
     user: Mapped["Users"] = relationship(back_populates="personal_data")
     doctor: Mapped["Doctors"] = relationship(back_populates="personal_data")

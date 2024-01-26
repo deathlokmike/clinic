@@ -17,3 +17,4 @@ class Treatments(Base):
     complaints: Mapped[str] = mapped_column(String, nullable=True)
     examinations: Mapped[str] = mapped_column(String, nullable=True)
     diagnosis: Mapped[int] = mapped_column(String, nullable=True)
+    appointment: Mapped["Appointments"] = relationship(back_populates="treatment")

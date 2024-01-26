@@ -23,3 +23,4 @@ class Appointments(Base):
 
     doctor: Mapped["Doctors"] = relationship(back_populates="appointments")
     patient: Mapped["Patients"] = relationship(back_populates="appointments")
+    treatments: Mapped["Treatments"] = relationship(back_populates="treatment")

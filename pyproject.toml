@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "md-clinic"
-version = "0.1.0"
+name = "app"
+version = "0.1.1"
 description = "This is a demo clinic designed for testing and practicing development for FastAPI"
 authors = ["Mikhail Drozdov <deathlokmike@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.12"
 fastapi = "^0.104.1"
 sqlalchemy = "^2.0.23"
 alembic = "^1.13.0"
@@ -26,6 +26,11 @@ prometheus-fastapi-instrumentator = "^6.1.0"
 pytest = "^7.4.3"
 isort = "^5.13.0"
 pytest-asyncio = "^0.23.2"
+pyright = "^1.1.348"
+
+
+[tool.poetry.group.prod.dependencies]
+gunicorn = "^21.2.0"
 
 [build-system]
 requires = ["poetry-core"]

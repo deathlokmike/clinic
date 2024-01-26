@@ -1,8 +1,8 @@
 """Init
 
-Revision ID: 9f2b8e06ee10
+Revision ID: 491213459069
 Revises: 
-Create Date: 2023-12-10 15:46:58.988732
+Create Date: 2024-01-26 15:30:06.022857
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9f2b8e06ee10'
+revision: str = '491213459069'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -51,15 +51,15 @@ def upgrade() -> None:
     op.create_table('personal_data',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Uuid(), nullable=False),
-    sa.Column('first_name', sa.String(), nullable=False),
+    sa.Column('first_name', sa.String(), nullable=True),
     sa.Column('second_name', sa.String(), nullable=True),
-    sa.Column('last_name', sa.String(), nullable=False),
-    sa.Column('birth_day', sa.Date(), nullable=False),
-    sa.Column('gender', sa.Boolean(), nullable=False),
-    sa.Column('passport_data', sa.String(), nullable=False),
-    sa.Column('address', sa.String(), nullable=False),
-    sa.Column('phone_number', sa.String(), nullable=False),
-    sa.Column('profile_photo_path', sa.String(), nullable=False),
+    sa.Column('last_name', sa.String(), nullable=True),
+    sa.Column('birth_day', sa.Date(), nullable=True),
+    sa.Column('gender', sa.Boolean(), nullable=True),
+    sa.Column('passport_data', sa.String(), nullable=True),
+    sa.Column('address', sa.String(), nullable=True),
+    sa.Column('phone_number', sa.String(), nullable=True),
+    sa.Column('profile_photo_path', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

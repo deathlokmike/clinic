@@ -24,3 +24,4 @@ class Users(Base):
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
 
     personal_data: Mapped["PersonalData"] = relationship(back_populates="user")
+    role: Mapped["Roles"] = relationship(back_populates="users")
