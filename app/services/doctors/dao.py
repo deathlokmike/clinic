@@ -1,12 +1,11 @@
-from app.models.appointments import Appointments
-from app.models.users.personal_data import PersonalData
-from app.services.base_dao import BaseDAO
-from app.models.users.doctors import Doctors
-
-from sqlalchemy import select, func
-from app.services.database import async_session
-from sqlalchemy.orm import with_loader_criteria, joinedload, selectinload
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy import func, select
+from sqlalchemy.orm import joinedload, selectinload, with_loader_criteria
+
+from app.models.appointments import Appointments
+from app.models.users.doctors import Doctors
+from app.services.base_dao import BaseDAO
+from app.services.database import async_session
 
 
 class DoctorsDAO(BaseDAO):

@@ -1,19 +1,21 @@
 import datetime
-import pytest
 import json
-from app.services.database import Base, async_session, engine
-from app.models.users.roles import Roles
-from app.models.users.users import Users
+import uuid
+
+import pytest
+from sqlalchemy import insert
+
+from app.config import settings
+from app.models.appointments import Appointments
+from app.models.pneumonia import Pneumonia
+from app.models.schedule import Schedule
+from app.models.treatments import Treatments
 from app.models.users.doctors import Doctors
 from app.models.users.patients import Patients
 from app.models.users.personal_data import PersonalData
-from app.models.pneumonia import Pneumonia
-from app.models.appointments import Appointments
-from app.models.treatments import Treatments
-from app.models.schedule import Schedule
-from app.config import settings
-from sqlalchemy import insert
-import uuid
+from app.models.users.roles import Roles
+from app.models.users.users import Users
+from app.services.database import Base, async_session, engine
 
 
 @pytest.mark.asyncio
@@ -63,7 +65,7 @@ async def prepare_database():
         for Model, values in [
             (Roles, roles),
             (Users, users),
-            (PersonalData, personal_data),
+            (Patients, personal_data),
             (Doctors, doctors),
             (Patients, patients),
             (Appointments, appointments),

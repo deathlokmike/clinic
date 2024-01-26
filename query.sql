@@ -3,7 +3,8 @@
 
 INSERT INTO roles (id, name)
 VALUES
-(0, 'Пациент')
+(0, 'Пациент'),
+(1, 'Врач')
 
 INSERT INTO users (id, email, password, role_id) 
 VALUES

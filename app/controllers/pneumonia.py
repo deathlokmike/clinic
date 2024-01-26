@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends
-from app.services.content.pneumonia.schemas import SPneumonia, SPneumoniaWithId
-from app.services.content.pneumonia.dao import PneumoniaDAO
+
 from app.models.users.users import Users
+from app.services.content.pneumonia.dao import PneumoniaDAO
+from app.services.content.pneumonia.schemas import SPneumonia, SPneumoniaWithId
 from app.services.users.dependencies import get_current_user
 
 router = APIRouter(prefix="/api/pneumonia", tags=["Блок с пневмонией"])
@@ -21,7 +22,7 @@ async def get_pneumonia_type(id_: int) -> SPneumoniaWithId | None:
 async def add_pneumonia_type(
     pneumonia_data: SPneumonia, user: Users = Depends(get_current_user)
 ):
-    await PneumoniaDAO.insert_value(
+    await PneumoniaDAO.add(
         type=pneumonia_data.type,
         pathogen=pneumonia_data.pathogen,
         morbidity=pneumonia_data.morbidity,

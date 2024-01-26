@@ -1,5 +1,6 @@
 from fastapi.background import P
-from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
+from starlette.middleware.base import (BaseHTTPMiddleware,
+                                       RequestResponseEndpoint)
 from starlette.requests import Request
 
 

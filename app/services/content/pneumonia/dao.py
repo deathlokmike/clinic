@@ -1,8 +1,9 @@
-from app.services.base_dao import BaseDAO
+from sqlalchemy import update
+
 from app.models.pneumonia import Pneumonia
+from app.services.base_dao import BaseDAO
 from app.services.content.pneumonia.schemas import SPneumonia
 from app.services.database import async_session
-from sqlalchemy import update
 
 
 class PneumoniaDAO(BaseDAO):

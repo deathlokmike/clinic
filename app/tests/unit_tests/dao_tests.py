@@ -1,12 +1,11 @@
 import datetime
+from contextlib import nullcontext as does_not_raise
 
 import pytest
+
+from app.services.appointments.dao import AppointmentsDAO
 from app.services.schedule.dao import ScheduleDaO
 from app.services.schedule.tasks import set_actual_schedule
-from app.services.appointments.dao import AppointmentsDAO
-
-
-from contextlib import nullcontext as does_not_raise
 
 
 @pytest.mark.asyncio

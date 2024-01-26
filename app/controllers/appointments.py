@@ -1,22 +1,21 @@
 import datetime
-from fastapi import APIRouter, Depends
-from app.models.users.personal_data import PersonalData
 
-from app.services.schedule.dao import ScheduleDaO
-from app.services.doctors.dao import DoctorsDAO
-from app.services.users.dependencies import get_personal_data
-from app.services.appointments.dao import AppointmentsDAO
-from app.services.patients.dao import PatientsDAO
-from app.services.users.schemas import SExtendedUser
-from app.services.appointments.schemas import (
-    SAppointmentsWithPatientInfo,
-    SNewAppointmentIn,
-    SNewAppointmentOut,
-)
-from app.services.appointments.dependencies import get_free_appointments
-from app.services.doctors.schemas import SAvailableAppointments
+from fastapi import APIRouter, Depends
 from pydantic import TypeAdapter
+
 from app.common.exceptions import AppointmentNotAvailableException
+from app.models.users.personal_data import PersonalData
+from app.services.appointments.dao import AppointmentsDAO
+from app.services.appointments.dependencies import get_free_appointments
+from app.services.appointments.schemas import (SAppointmentsWithPatientInfo,
+                                               SNewAppointmentIn,
+                                               SNewAppointmentOut)
+from app.services.doctors.dao import DoctorsDAO
+from app.services.doctors.schemas import SAvailableAppointments
+from app.services.patients.dao import PatientsDAO
+from app.services.schedule.dao import ScheduleDaO
+from app.services.users.dependencies import get_personal_data
+from app.services.users.schemas import SExtendedUser
 
 router = APIRouter(prefix="/api/appointments", tags=["Записи на прием"])
 

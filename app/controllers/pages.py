@@ -1,12 +1,10 @@
-from fastapi import APIRouter, Request, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from app.controllers.appointments import (
-    get_patient_info_and_appointments,
-    get_available_appointments,
-)
-from app.lang.translator import Translator
 
+from app.controllers.appointments import (get_available_appointments,
+                                          get_patient_info_and_appointments)
+from app.lang.translator import Translator
 
 router = APIRouter(tags=["Фронтенд"])
 

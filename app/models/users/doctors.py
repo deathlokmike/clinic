@@ -1,20 +1,21 @@
-from typing import TYPE_CHECKING
 from datetime import date
-from sqlalchemy.orm import mapped_column, Mapped, relationship
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Date, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.services.database import Base
+from uuid import UUID
 
 if TYPE_CHECKING:
     from app.models.appointments import Appointments
-    from app.models.users.personal_data import PersonalData
 
 
 class Doctors(Base):
     __tablename__ = "doctors"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    pd_id: Mapped[str] = mapped_column(ForeignKey("personal_data.id"), nullable=False)
-
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), nullable=False)
     specialization: Mapped[str]  # специализация
     date_employment: Mapped[date] = mapped_column(
         Date, nullable=False
@@ -22,5 +23,4 @@ class Doctors(Base):
     pre_work_experience: Mapped[int]  # предыдущий опыт работы
     resigned: Mapped[bool]  # уволился
 
-    personal_data: Mapped["PersonalData"] = relationship(back_populates="doctor")
     appointments: Mapped[list["Appointments"]] = relationship(back_populates="doctor")

@@ -1,11 +1,13 @@
-from app.services.base_dao import BaseDAO
+import datetime
+
+from sqlalchemy import and_, insert, select
+
 from app.models.appointments import Appointments
 from app.models.users.doctors import Doctors
 from app.models.users.personal_data import PersonalData
-from sqlalchemy import select, insert, and_
-from app.services.database import async_session
 from app.services.appointments.schemas import SNewAppointmentIn
-import datetime
+from app.services.base_dao import BaseDAO
+from app.services.database import async_session
 
 
 class AppointmentsDAO(BaseDAO):

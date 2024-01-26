@@ -1,5 +1,7 @@
 import datetime
+
 from pydantic import BaseModel
+
 from app.services.appointments.schemas import SBookedAppointment
 from app.services.users.schemas import SPersonalData
 

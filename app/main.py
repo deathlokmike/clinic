@@ -1,23 +1,24 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.routing import APIRouter
-from app.controllers.pages import router as router_view
-from app.controllers.pneumonia import router as router_pneumonia
-from app.controllers.auth import router as router_auth
-from app.controllers.appointments import router as router_appointments
-from fastapi.middleware.cors import CORSMiddleware
-from app.common.exceptions import TokenAbsentException
-from app.services.schedule.tasks import set_actual_schedule
-from fastapi import Request
 import asyncio
 from contextlib import asynccontextmanager
-from starlette.responses import RedirectResponse
-from app.middlewares.i18n import I18nMiddleware
+
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRouter
+from fastapi.staticfiles import StaticFiles
 from prometheus_fastapi_instrumentator import Instrumentator
+from starlette.responses import RedirectResponse
+
+from app.common.exceptions import TokenAbsentException
+from app.controllers.appointments import router as router_appointments
+from app.controllers.auth import router as router_auth
+from app.controllers.pages import router as router_view
+from app.controllers.pneumonia import router as router_pneumonia
+from app.middlewares.i18n import I18nMiddleware
+from app.services.schedule.tasks import set_actual_schedule
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_: FastAPI):
     asyncio.ensure_future(set_actual_schedule())
     yield
 
@@ -25,11 +26,11 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Clinic API", lifespan=lifespan)
 
 
-instrumentator = Instrumentator(
+instrumentation = Instrumentator(
     should_group_status_codes=False, excluded_handlers=[".*admin.*", "/metrics"]
 )
 
-instrumentator.instrument(app).expose(app)
+instrumentation.instrument(app).expose(app)
 
 main_router = APIRouter()
 main_router.include_router(router_view)

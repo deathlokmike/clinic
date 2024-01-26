@@ -1,17 +1,16 @@
 import datetime
-from app.services.schedule.dao import ScheduleDaO
-from app.services.doctors.dao import DoctorsDAO
-from app.services.doctors.schemas import (
-    SDoctorWithAppointment,
-    SAvailableAppointments,
-    SDoctorWithFreeAppointments,
-    SAppointmentsByDate,
-)
-from pydantic import TypeAdapter
 
 from fastapi import Depends
-from app.services.users.dependencies import get_current_user
+from pydantic import TypeAdapter
+
 from app.models.users.users import Users
+from app.services.doctors.dao import DoctorsDAO
+from app.services.doctors.schemas import (SAppointmentsByDate,
+                                          SAvailableAppointments,
+                                          SDoctorWithAppointment,
+                                          SDoctorWithFreeAppointments)
+from app.services.schedule.dao import ScheduleDaO
+from app.services.users.dependencies import get_current_user
 
 
 async def get_relevant_schedule(
