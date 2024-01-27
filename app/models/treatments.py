@@ -1,7 +1,12 @@
 from sqlalchemy import ForeignKey, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.services.database import Base
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.appointments import Appointments
 
 
 class Treatments(Base):
@@ -14,3 +19,5 @@ class Treatments(Base):
     complaints: Mapped[str] = mapped_column(String, nullable=True)
     examinations: Mapped[str] = mapped_column(String, nullable=True)
     diagnosis: Mapped[int] = mapped_column(String, nullable=True)
+    appointment: Mapped["Appointments"] = relationship(back_populates="treatment")
+

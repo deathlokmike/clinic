@@ -5,9 +5,10 @@ from sqlalchemy import ForeignKey, types
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.services.database import Base
+from app.models.users.roles import Roles
+from app.models.appointments import Appointments
 
 if TYPE_CHECKING:
-    from app.models.appointments import Appointments
     from app.models.users.personal_data import PersonalData
 
 
@@ -22,5 +23,6 @@ class Users(Base):
     pd_id: Mapped[int] = mapped_column(ForeignKey("personal_data.id"), nullable=True)
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
 
+    role: Mapped["Roles"] = relationship(back_populates="users")
     personal_data: Mapped["PersonalData"] = relationship(back_populates="user")
-    appointments: Mapped[list["Appointments"]] = relationship(back_populates="patient")
+    appointments: Mapped[list["Appointments"]] = relationship(back_populates="user")
