@@ -1,6 +1,5 @@
 [
     {
-        "user_id": "f68d50db-f10a-48b4-acb1-8fae183cac3a",
         "first_name": "Иван",
         "second_name": "Сергеевич",
         "last_name": "Кузнецов",
@@ -12,7 +11,6 @@
         "profile_photo_path": "img/users/f68d50db-f10a-48b4-acb1-8fae183cac3a.png"
     },
     {
-        "user_id": "4d527bd4-c872-4e2c-a56f-14260b345a64",
         "first_name": "Мария",
         "second_name": "Егоровна",
         "last_name": "Иванова",
@@ -24,7 +22,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "4a7f20f7-e92d-4925-a580-2b965e2da0a6",
         "first_name": "Алексей",
         "second_name": "Дмитриевич",
         "last_name": "Федоров",
@@ -36,7 +33,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "bead8e61-68be-4f39-a459-bf6c906b37c1",
         "first_name": "Екатерина",
         "second_name": "Андреевна",
         "last_name": "Соколова",
@@ -48,7 +44,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "98367c58-9574-4c54-ac91-da4c764c75aa",
         "first_name": "Павел",
         "second_name": "Иванович",
         "last_name": "Петров",
@@ -60,7 +55,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "cb56fdbb-fd02-4fd8-a3d9-3487b54f21cc",
         "first_name": "Светлана",
         "second_name": "Александровна",
         "last_name": "Смирнова",
@@ -72,7 +66,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "a5c42a22-3fa0-4bf3-b489-5d4fc9d7ea6f",
         "first_name": "Денис",
         "second_name": "Николаевич",
         "last_name": "Романов",
@@ -84,7 +77,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "b6bac282-22ae-4128-8478-7f61c54b6487",
         "first_name": "Анна",
         "second_name": "Игоревна",
         "last_name": "Захарова",
@@ -96,7 +88,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "6434ece9-19a9-45fe-ba04-ba8648db5f16",
         "first_name": "Михаил",
         "second_name": "Артемьевич",
         "last_name": "Денисов",
@@ -108,7 +99,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc",
         "first_name": "Татьяна",
         "second_name": "Олеговна",
         "last_name": "Мельникова",
@@ -120,7 +110,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "982eeb52-667c-4acb-9d83-18d7d48f518a",
         "first_name": "Александр",
         "second_name": "Петрович",
         "last_name": "Герасимов",
@@ -132,7 +121,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "2a4e3522-f10f-4fdf-a714-3e58f451c92e",
         "first_name": "Ольга",
         "second_name": "Аннаевна",
         "last_name": "Белякова",
@@ -144,7 +132,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "95291318-f3fa-4f0f-b3a0-8908bfe391b6",
         "first_name": "Андрей",
         "second_name": "Сергеевич",
         "last_name": "Фролов",
@@ -156,7 +143,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "3c1fcb41-9c78-4f0f-b820-9711ffc87a6f",
         "first_name": "Евгения",
         "second_name": "Егоровна",
         "last_name": "Лаврова",
@@ -168,7 +154,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "395ed07f-f6eb-4e74-867a-ae6498bc2f2f",
         "first_name": "Сергей",
         "second_name": "Дмитриевич",
         "last_name": "Котов",
@@ -180,7 +165,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "d384f677-9f23-46d4-a790-f8f29abb6f3f",
         "first_name": "Ирина",
         "second_name": "Викторовна",
         "last_name": "Константинова",
@@ -192,7 +176,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "5632918c-135b-4c49-8af5-89ed75158fb1",
         "first_name": "Владимир",
         "second_name": "Артемьевич",
         "last_name": "Тимошенко",
@@ -204,7 +187,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "b5eaeb53-2cce-4d7c-855b-08920d66d6b7",
         "first_name": "Наталья",
         "second_name": "Евгеньевна",
         "last_name": "Исаева",
@@ -216,7 +198,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "e7800146-efbb-4bce-950e-f7fbf33613eb",
         "first_name": "Дмитрий",
         "second_name": "Игоревич",
         "last_name": "Крылов",
@@ -228,7 +209,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "73443f74-ef2b-4797-b6af-dc0ff6f525eb",
         "first_name": "Оксана",
         "second_name": "Александровна",
         "last_name": "Шевченко",
@@ -240,7 +220,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "d9244ec4-dc91-4f0b-b171-6e08f0f60daa",
         "first_name": "Иван",
         "second_name": "Владимирович",
         "last_name": "Сидоров",
@@ -252,7 +231,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "21f579ae-fcd7-4029-b3cd-1d912fe631a7",
         "first_name": "Мария",
         "second_name": "Андреевна",
         "last_name": "Браткова",
@@ -264,7 +242,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "e11d2790-3cf6-44f0-9bc6-ce2c93b7eb7f",
         "first_name": "Алексей",
         "second_name": "Анатольевич",
         "last_name": "Костин",
@@ -276,7 +253,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "0de0b82a-76ae-4efe-99d2-1e282f332d70",
         "first_name": "Екатерина",
         "second_name": "Егоровна",
         "last_name": "Тихонова",
@@ -288,7 +264,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "9e204d2e-01bb-44f8-857f-e74cd864d6b2",
         "first_name": "Павел",
         "second_name": "Никитович",
         "last_name": "Гусев",
@@ -300,7 +275,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "aadb1517-d708-45d2-a9ec-15ad0ab1a81d",
         "first_name": "Светлана",
         "second_name": "Марковна",
         "last_name": "Антонова",
@@ -312,7 +286,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "3bf56fac-b27e-485b-82de-a251070ed5a3",
         "first_name": "Денис",
         "second_name": "Геннадьевич",
         "last_name": "Воробьев",
@@ -324,7 +297,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "6e4bf18d-01de-4c16-ac03-bfbf16d61b55",
         "first_name": "Анна",
         "second_name": "Артемьевна",
         "last_name": "Лебедь",
@@ -336,7 +308,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "b95ebf53-5483-4506-919e-9992388cb237",
         "first_name": "Михаил",
         "second_name": "Степанович",
         "last_name": "Фомин",
@@ -348,7 +319,6 @@
         "profile_photo_path": "img/default_profile_photo.png"
     },
     {
-        "user_id": "1dd85ba2-132b-496a-8a32-c7428e842417",
         "first_name": "Татьяна",
         "second_name": "Ольговна",
         "last_name": "Тимофеева",

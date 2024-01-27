@@ -1,69 +1,69 @@
 [
   {
-    "pd_id": 20,
+    "user_id": "f68d50db-f10a-48b4-acb1-8fae183cac3a",
     "specialization": "Хирург",
     "date_employment": "2017-05-10",
     "pre_work_experience": 6,
     "resigned": false
   },
   {
-    "pd_id": 21,
+    "user_id": "4d527bd4-c872-4e2c-a56f-14260b345a64",
     "specialization": "Терапевт",
     "date_employment": "2015-08-20",
     "pre_work_experience": 8,
     "resigned": false
   },
   {
-    "pd_id": 22,
+    "user_id": "4a7f20f7-e92d-4925-a580-2b965e2da0a6",
     "specialization": "Хирург",
     "date_employment": "2016-12-08",
     "pre_work_experience": 7,
     "resigned": false
   },
   {
-    "pd_id": 23,
+    "user_id": "bead8e61-68be-4f39-a459-bf6c906b37c1",
     "specialization": "Терапевт",
     "date_employment": "2019-03-25",
     "pre_work_experience": 4,
     "resigned": false
   },
   {
-    "pd_id": 24,
+    "user_id": "98367c58-9574-4c54-ac91-da4c764c75aa",
     "specialization": "Хирург",
     "date_employment": "2015-06-10",
     "pre_work_experience": 8,
     "resigned": false
   },
   {
-    "pd_id": 25,
+    "user_id": "cb56fdbb-fd02-4fd8-a3d9-3487b54f21cc",
     "specialization": "Терапевт",
     "date_employment": "2018-11-12",
     "pre_work_experience": 5,
     "resigned": true
   },
   {
-    "pd_id": 26,
+    "user_id": "a5c42a22-3fa0-4bf3-b489-5d4fc9d7ea6f",
     "specialization": "Хирург",
     "date_employment": "2017-09-30",
     "pre_work_experience": 6,
     "resigned": false
   },
   {
-    "pd_id": 27,
+    "user_id": "b6bac282-22ae-4128-8478-7f61c54b6487",
     "specialization": "Терапевт",
     "date_employment": "2016-04-15",
     "pre_work_experience": 7,
     "resigned": false
   },
   {
-    "pd_id": 28,
+    "user_id": "6434ece9-19a9-45fe-ba04-ba8648db5f16",
     "specialization": "Хирург",
     "date_employment": "2015-12-18",
     "pre_work_experience": 6,
     "resigned": false
   },
   {
-    "pd_id": 29,
+    "user_id": "9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc",
     "specialization": "Терапевт",
     "date_employment": "2019-08-14",
     "pre_work_experience": 4,

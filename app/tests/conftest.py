@@ -11,7 +11,6 @@ from app.models.pneumonia import Pneumonia
 from app.models.schedule import Schedule
 from app.models.treatments import Treatments
 from app.models.users.doctors import Doctors
-from app.models.users.patients import Patients
 from app.models.users.personal_data import PersonalData
 from app.models.users.roles import Roles
 from app.models.users.users import Users
@@ -32,10 +31,9 @@ async def prepare_database():
             return json.load(file)
 
     roles = open_mock_json("roles")
-    users = open_mock_json("users")
     personal_data = open_mock_json("personal_data")
+    users = open_mock_json("users")
     doctors = open_mock_json("doctors")
-    patients = open_mock_json("patients")
     appointments = open_mock_json("appointments")
     schedule = open_mock_json("schedule")
 
@@ -44,15 +42,16 @@ async def prepare_database():
 
     for p in personal_data:
         p["birth_day"] = datetime.datetime.strptime(p["birth_day"], "%Y-%m-%d")
-        p["user_id"] = uuid.UUID(p["user_id"])
 
     for d in doctors:
         d["date_employment"] = datetime.datetime.strptime(
             d["date_employment"], "%Y-%m-%d"
         )
+        d["user_id"] = uuid.UUID(d["user_id"])
 
     for a in appointments:
         a["date_time"] = datetime.datetime.strptime(a["date_time"], "%Y-%m-%d %H:%M:%S")
+        a["user_id"] = uuid.UUID(a["user_id"])
 
     for s in schedule:
         s["start_time"] = datetime.datetime.strptime(
@@ -64,10 +63,9 @@ async def prepare_database():
     async with async_session() as session:
         for Model, values in [
             (Roles, roles),
+            (PersonalData, personal_data),
             (Users, users),
-            (Patients, personal_data),
             (Doctors, doctors),
-            (Patients, patients),
             (Appointments, appointments),
             (Schedule, schedule),
         ]:
