@@ -29,4 +29,7 @@ class SPersonalData(BaseModel):
 
     @property
     def full_name(self) -> str:
-        return self.last_name + " " + self.first_name + " " + self.second_name
+        if self.second_name is None:
+            return self.last_name + " " + self.first_name
+        else:
+            return self.last_name + " " + self.first_name + " " + self.second_name

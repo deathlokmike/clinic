@@ -11,14 +11,14 @@ from app.models.users.users import Users
 from app.services.users.dao import UsersDaO
 
 
-def get_token(request: Request) -> str:
+def _get_token(request: Request) -> str:
     token = request.cookies.get("clinic_access_token")
     if not token:
         raise TokenAbsentException
     return token
 
 
-async def get_current_user(token: str = Depends(get_token)) -> Users:
+async def get_current_user(token: str = Depends(_get_token)) -> Users:
     try:
         payload = jwt.decode(token, settings.JWT_SECRET, settings.JWT_ALGORITHM)
     except ExpiredSignatureError:
@@ -39,4 +39,4 @@ async def get_current_user(token: str = Depends(get_token)) -> Users:
 
 
 async def get_personal_data(user: Users = Depends(get_current_user)) -> PersonalData:
-    return await UsersDaO.get_personal_data_by_id(user.id)
+    return await UsersDaO.get_personal_data(user.id)
