@@ -19,7 +19,7 @@ class UsersDaO(BaseDAO):
             user = (
                 select(Users)
                 .where(Users.id == model_id)
-            ).cte("user")
+            ).subquery("user")
             query = select(PersonalData).where(PersonalData.id == user.c.pd_id)
             result = await session.execute(query)
             return result.mappings().one_or_none()

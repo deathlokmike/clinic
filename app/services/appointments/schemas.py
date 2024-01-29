@@ -19,15 +19,14 @@ class SAppointmentsWithPatientInfo(BaseModel):
 
 
 class SBookedAppointment(BaseModel):
-    patient_id: int | None
-    date_time: datetime | None
+    date_time: datetime
 
 
 class SNewAppointmentIn(BaseModel):
     doctor_id: int
     date_time: datetime
 
+
 class SNewAppointmentOut(BaseModel):
-    full_name: str
     date_time: datetime
     status: int

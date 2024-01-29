@@ -3,7 +3,7 @@ import datetime
 from pydantic import BaseModel
 
 from app.services.appointments.schemas import SBookedAppointment
-from app.services.users.schemas import SPersonalData
+from app.services.users.schemas import SUserInfo
 
 
 class SDoctorWithAppointment(BaseModel):
@@ -11,13 +11,13 @@ class SDoctorWithAppointment(BaseModel):
     specialization: str
     date_employment: datetime.date
     pre_work_experience: int
-    personal_data: SPersonalData
+    user: SUserInfo
     appointments: list[SBookedAppointment]
 
     @property
     def experience(self) -> int:
         return (
-            datetime.date.today() - self.date_employment
+                datetime.date.today() - self.date_employment
         ).days // 365 + self.pre_work_experience
 
 

@@ -5,7 +5,7 @@ import pytest
 
 from app.services.appointments.dao import AppointmentsDAO
 from app.services.schedule.dao import ScheduleDaO
-from app.services.users.dao import UsersDaO, PersonalData
+from app.services.users.dao import PersonalData, UsersDaO
 
 
 @pytest.mark.asyncio

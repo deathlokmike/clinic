@@ -4,6 +4,8 @@ from sqlalchemy.orm import joinedload, selectinload, with_loader_criteria
 
 from app.models.appointments import Appointments
 from app.models.users.doctors import Doctors
+from app.models.users.personal_data import PersonalData
+from app.models.users.users import Users
 from app.services.base_dao import BaseDAO
 from app.services.database import async_session
 
@@ -16,26 +18,33 @@ class DoctorsDAO(BaseDAO):
         async with async_session() as session:
             query = (
                 select(Doctors)
-                .options(joinedload(Doctors.personal_data))
+                .options(joinedload(Doctors.user)
+                         .load_only(Users.id)
+                         .options(joinedload(Users.personal_data)
+                                  .load_only(PersonalData.first_name,
+                                             PersonalData.second_name,
+                                             PersonalData.last_name,
+                                             PersonalData.profile_photo_path)))
                 .options(
-                    selectinload(Doctors.appointments),
+                    selectinload(Doctors.appointments)
+                    .load_only(Appointments.date_time),
                     with_loader_criteria(
-                        Appointments, Appointments.date_time > func.now()
+                        Appointments,
+                        Appointments.date_time > func.now(),
+                        Appointments.status != 2
                     ),
+
                 )
                 .where(Doctors.resigned == False)
             )
-
             result = await session.execute(query)
-            return jsonable_encoder(result.scalars().all())
+            return jsonable_encoder(result.mappings().all())
 
     @classmethod
-    async def get_personal_data(cls, doctor_id: int):
+    async def get_by_id(cls, _id: int):
         async with async_session() as session:
-            query = (
-                select(Doctors.id, PersonalData.full_name)
-                .join(PersonalData, Doctors.pd_id == PersonalData.id)
-                .where(Doctors.id == doctor_id)
-            )
+            query = (select(Doctors.__table__.columns)
+                     .filter_by(id=_id,
+                                residned=False))
             result = await session.execute(query)
-            return result.mappings().one()
+            return result.mappings().one_or_none()

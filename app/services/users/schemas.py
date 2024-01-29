@@ -21,7 +21,7 @@ class SSensitiveSExtendedUser(SExtendedUser):
     phone_number: str
 
 
-class SPersonalData(BaseModel):
+class SUserFullNameAndPhoto(BaseModel):
     first_name: str
     second_name: str
     last_name: str
@@ -33,3 +33,8 @@ class SPersonalData(BaseModel):
             return self.last_name + " " + self.first_name
         else:
             return self.last_name + " " + self.first_name + " " + self.second_name
+
+
+class SUserInfo(BaseModel):
+    id: str
+    personal_data: SUserFullNameAndPhoto
