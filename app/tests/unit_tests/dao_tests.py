@@ -1,9 +1,10 @@
 import datetime
-from contextlib import nullcontext as does_not_raise
 
 import pytest
+from pydantic import TypeAdapter
 
 from app.services.appointments.dao import AppointmentsDAO
+from app.services.appointments.schemas import SPatientInfoWithAppointments
 from app.services.schedule.dao import ScheduleDaO
 from app.services.users.dao import PersonalData, UsersDaO
 
@@ -35,9 +36,25 @@ async def test_schedule_between(date_time, res: bool):
         (datetime.datetime(year=2023, month=11, day=22, hour=10), 5, True),
     ],
 )
-async def test_doctor_appointment(date_time: datetime.datetime, doctor_id: int, res: bool):
-    result = await AppointmentsDAO.check_appointment(date_time, doctor_id)
+async def test_check_available_appointment(date_time: datetime.datetime, doctor_id: int, res: bool):
+    result = await AppointmentsDAO.is_not_exist(date_time, doctor_id)
     assert result == res
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "user_id, count_appointments",
+    [
+        ("982eeb52-667c-4acb-9d83-18d7d48f518a", 4),
+        ("95291318-f3fa-4f0f-b3a0-8908bfe391b6", 2),
+        ("2a4e3522-f10f-4fdf-a714-3e58f451c92e", 1)
+    ],
+)
+async def test_patient_appointment(user_id: str, count_appointments: int):
+    raw = await AppointmentsDAO.get_patient_appointments(user_id)
+    user_with_appointments: SPatientInfoWithAppointments = (
+        TypeAdapter(SPatientInfoWithAppointments).validate_python(raw["Users"]))
+    assert len(user_with_appointments.appointments) == count_appointments
 
 
 @pytest.mark.asyncio

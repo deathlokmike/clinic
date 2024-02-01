@@ -1,13 +1,13 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 from sqlalchemy import DateTime, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.services.database import Base
-from app.models.users.doctors import Doctors
 from app.models.treatments import Treatments
-from uuid import UUID
+from app.models.users.doctors import Doctors
+from app.services.database import Base
 
 if TYPE_CHECKING:
     from app.models.users.users import Users

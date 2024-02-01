@@ -8,22 +8,9 @@ class SUserAuth(BaseModel):
     password: str
 
 
-class SExtendedUser(BaseModel):
-    full_name: str
-    birth_day: date
-    gender: bool
-    profile_photo_path: str
-
-
-class SSensitiveSExtendedUser(SExtendedUser):
-    passport_data: str
-    address: str
-    phone_number: str
-
-
-class SUserFullNameAndPhoto(BaseModel):
+class SUserPersonalData(BaseModel):
     first_name: str
-    second_name: str
+    second_name: str | None
     last_name: str
     profile_photo_path: str
 
@@ -35,6 +22,17 @@ class SUserFullNameAndPhoto(BaseModel):
             return self.last_name + " " + self.first_name + " " + self.second_name
 
 
+class SExtendedUserData(SUserPersonalData):
+    birth_day: date
+    gender: bool
+
+
+class SSensitiveSExtendedUserData(SExtendedUserData):
+    passport_data: str
+    address: str
+    phone_number: str
+
+
 class SUserInfo(BaseModel):
     id: str
-    personal_data: SUserFullNameAndPhoto
+    personal_data: SUserPersonalData

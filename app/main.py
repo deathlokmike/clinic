@@ -25,7 +25,6 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(title="Clinic API", lifespan=lifespan)
 
-
 instrumentation = Instrumentator(
     should_group_status_codes=False, excluded_handlers=[".*admin.*", "/metrics"]
 )

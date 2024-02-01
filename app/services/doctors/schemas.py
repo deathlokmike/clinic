@@ -2,36 +2,39 @@ import datetime
 
 from pydantic import BaseModel
 
-from app.services.appointments.schemas import SBookedAppointment
-from app.services.users.schemas import SUserInfo
+from app.services.users.schemas import SUserInfo, SUserPersonalData
 
 
-class SDoctorWithAppointment(BaseModel):
+class SDoctorWithPersonalData(BaseModel):
     id: int
     specialization: str
+    user: SUserInfo
+
+
+class SBookedAppointment(BaseModel):
+    date_time: datetime.datetime
+
+
+class SDoctorWithBookedAppointments(SDoctorWithPersonalData):
     date_employment: datetime.date
     pre_work_experience: int
-    user: SUserInfo
     appointments: list[SBookedAppointment]
 
     @property
     def experience(self) -> int:
-        return (
-                datetime.date.today() - self.date_employment
-        ).days // 365 + self.pre_work_experience
+        return (datetime.date.today() - self.date_employment).days // 365 + self.pre_work_experience
 
 
-class SAppointmentsByDate(BaseModel):
+class SFreeAppointmentsTimeGroupedByDate(BaseModel):
     date: datetime.date
     time: list[datetime.time]
 
 
 class SDoctorWithFreeAppointments(BaseModel):
     id: int
-    full_name: str
     experience: int
-    profile_photo_path: str
-    free_appointments: list[SAppointmentsByDate]
+    personal_data: SUserPersonalData
+    free_appointments: list[SFreeAppointmentsTimeGroupedByDate]
 
 
 class SAvailableAppointments(BaseModel):
