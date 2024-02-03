@@ -4,7 +4,7 @@ from app.services.database import Base, async_session
 
 
 class BaseDAO:
-    model: Base = None
+    model: Base
 
     @classmethod
     async def get_all(cls):
@@ -19,10 +19,6 @@ class BaseDAO:
             query = select(cls.model.__table__.columns).filter_by(**filter_by)
             result = await session.execute(query)
             return result.mappings().one_or_none()
-
-    @classmethod
-    async def get_by_id(cls, model_id: int):
-        return await cls.get_one_or_none(id=model_id)
 
     @classmethod
     async def add(cls, **data):

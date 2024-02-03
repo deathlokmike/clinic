@@ -3,10 +3,10 @@ window.addEventListener("register", () => registerUser(), false);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const passwordInput = document.getElementById('password');
-    const togglePasswordButton = document.getElementById('toggle_password');
-    const hiddenIcon = document.querySelector('.toggle-password .hidden');
-    const shownIcon = document.querySelector('.toggle-password img:not(.hidden)');
+    let passwordInput = document.getElementById('password');
+    let togglePasswordButton = document.getElementById('toggle_hide_password');
+    let hiddenIcon = document.getElementById('img_hide');
+    let shownIcon = document.getElementById('img_show');
 
     togglePasswordButton.addEventListener('click', function () {
         if (passwordInput.type === 'password') {
@@ -21,49 +21,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-async function loginUser() {
-    const url = "/api/auth/login";
-    const wrongCredentialsSpan = document.getElementById("wrong_credentials");
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    wrongCredentialsSpan.textContent = "";
-
-    await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: password }),
-    }).then(response => {
-        if (response.status === 200) {
-            window.location.href = "/me/appointments";
-        } else {
-            response.json().then(value => {
-                wrongCredentialsSpan.textContent = value.detail;
-            })
-        }
-    });
+function showError(text) {
+    let errorMessageBlock = document.getElementById("error_message_block");
+    let errorMessageSpan = document.getElementById("error_message_text");
+    errorMessageSpan.textContent = text;
+    errorMessageBlock.classList.remove('hidden');
 }
 
-async function registerUser() {
-    const wrongCredentialsSpan = document.getElementById("wrong_credentials");
-    const url = "/api/auth/register";
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
 
-    wrongCredentialsSpan.textContent = "";
-
-    await fetch(url, {
+async function auth(url) {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
-    }).then(response => {
-        if (response.status === 200) {
-            window.location.href = "/login"
-        } else {
-            response.json().then(value => {
-                wrongCredentialsSpan.textContent = value.detail;
-            })
-        }
-    });
+    })
+    if (response.status === 200) {
+        window.location.href = "/me";
+    }
+    else if (response.status === 422) {
+        showError("Неверный формат почты")
+    }
+    else {
+        let error_text = await response.json();
+        showError(error_text.detail);
+    }
+}
+
+
+async function loginUser() {
+    let url = "/api/auth/login";
+    await auth(url);
+}
+
+
+async function registerUser() {
+    const url = "/api/auth/register";
+    await auth(url);
 }

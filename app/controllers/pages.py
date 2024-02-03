@@ -2,8 +2,10 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app.controllers.appointments import (get_available_appointments,
-                                          get_patient_info_and_appointments)
+from app.controllers.appointments import (
+    get_available_appointments,
+    get_patient_info_and_appointments,
+)
 from app.lang.translator import Translator
 
 router = APIRouter(tags=["Фронтенд"])
@@ -21,7 +23,7 @@ async def get_registration_page(request: Request):
             "func_name": "registerUser()",
             "redirect_url": "/login",
             **translator.get_translate("registration"),
-            **translator.get_translate("header")
+            **translator.get_translate("header"),
         },
     )
 
@@ -36,23 +38,32 @@ async def get_login_page(request: Request):
             "func_name": "loginUser()",
             "redirect_url": "/registration",
             **translator.get_translate("login"),
-            **translator.get_translate("header")
+            **translator.get_translate("header"),
         },
     )
 
 
-@router.get("/me/appointments", response_class=HTMLResponse)
+@router.get("/me", response_class=HTMLResponse)
 async def get_user_appointments_page(
     request: Request, info=Depends(get_patient_info_and_appointments)
 ):
     translator = Translator(request.state.locale)
+    if info is None:
+        return templates.TemplateResponse(
+            name="personal_data.html",
+            context={
+                "request": request,
+                **translator.get_translate("personal_data"),
+                **translator.get_translate("header"),
+            },
+        )
     return templates.TemplateResponse(
         name="appointments.html",
         context={
             "request": request,
             "appointments": info["appointments"],
             "personal_data": info["personal_data"],
-            **translator.get_translate("header")
+            **translator.get_translate("header"),
         },
     )
 
@@ -65,4 +76,3 @@ async def get_new_appointment_page(
         name="window.html",
         context={"request": request, "available": available},
     )
-

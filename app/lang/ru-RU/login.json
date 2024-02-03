@@ -4,5 +4,6 @@
     "pre_redirect_text": "Не зарегистрированы?",
     "redirect_text": "Создать аккаунт",
     "email": "Эл. почта",
-    "password": "Пароль"
+    "password": "Пароль",
+    "forgot_password": "Забыли пароль?"
 }

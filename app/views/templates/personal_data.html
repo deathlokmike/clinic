@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<div
+    class="flex flex-col w-full max-w-md px-4 py-6 bg-white rounded-lg shadow dark:bg-gray-800 my-4 sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden md:px-8 lg:px-10">
+    <div class="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
+        {{ context }}
+    </div>
+    <div class="mt-2 mb-2">
+        <div class="w-full space-y-5">
+            <div class="w-full">
+                <div class=" relative ">
+                    <input type="text" id="pd_first_name"
+                        class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        placeholder="{{ your_first_name }}" />
+                </div>
+            </div>
+            <div class="w-full">
+                <div class=" relative ">
+                    <input type="text" id="pd_last_name"
+                        class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        placeholder=" {{ your_last_name }}" />
+                </div>
+            </div>
+            <div class="w-full">
+                <div class=" relative ">
+                    <input type="text" id="pd_second_name"
+                        class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        placeholder=" {{ your_second_name }} " />
+                </div>
+            </div>
+            <div>
+                <span class="block w-full rounded-md shadow-sm">
+                    <button type="button"
+                        class="py-2 px-4  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                        {{ btn_confirm }}
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

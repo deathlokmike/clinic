@@ -49,12 +49,12 @@ class AppointmentsDAO(BaseDAO):
             return jsonable_encoder(result.mappings().first())
 
     @classmethod
-    async def add(cls, patient_id: int, new_appointment: SNewAppointmentIn):
+    async def add_new(cls, user_id: str, new_appointment: SNewAppointmentIn):
         async with async_session() as session:
             query = (
                 insert(Appointments)
                 .values(
-                    patient_id=patient_id,
+                    user_id=user_id,
                     doctor_id=new_appointment.doctor_id,
                     date_time=new_appointment.date_time,
                     status=0,
@@ -64,9 +64,9 @@ class AppointmentsDAO(BaseDAO):
                     Appointments.status,
                 )
             )
-            new_appointment = await session.execute(query)
+            _appointment = await session.execute(query)
             await session.commit()
-            return new_appointment.mappings().one()
+            return _appointment.mappings().one()
 
     @classmethod
     async def is_not_exist(cls, date_time: datetime.datetime, doctor_id: int) -> bool:

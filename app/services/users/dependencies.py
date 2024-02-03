@@ -36,7 +36,3 @@ async def get_current_user(token: str = Depends(_get_token)) -> Users:
     if not user:
         raise UserIsNotPresentException
     return user
-
-
-async def get_personal_data(user: Users = Depends(get_current_user)) -> PersonalData:
-    return await UsersDaO.get_personal_data(user.id)

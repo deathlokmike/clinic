@@ -1,5 +1,6 @@
 {
-    "title": "Клиника СПб",
+    "title": "Клиника",
     "appointment_btn": "Мои записи",
-    "logout_btn": "Выйти"
+    "logout_btn": "Выйти",
+    "source_code": "Исходный код"
 }

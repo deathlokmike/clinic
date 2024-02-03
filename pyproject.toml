@@ -26,11 +26,14 @@ prometheus-fastapi-instrumentator = "^6.1.0"
 pytest = "^7.4.3"
 isort = "^5.13.0"
 pytest-asyncio = "^0.23.2"
-pyright = "^1.1.348"
 
 
 [tool.poetry.group.prod.dependencies]
 gunicorn = "^21.2.0"
+
+[tool.pyright]
+venv="app-Bp_qAgfN-py3.11"
+venvPath="/Users/linearlys/Library/Caches/pypoetry/virtualenvs/"
 
 [build-system]
 requires = ["poetry-core"]

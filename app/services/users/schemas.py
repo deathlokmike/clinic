@@ -12,7 +12,7 @@ class SUserPersonalData(BaseModel):
     first_name: str
     second_name: str | None
     last_name: str
-    profile_photo_path: str
+    profile_photo_path: str = "img/default_profile_photo.png"
 
     @property
     def full_name(self) -> str:
