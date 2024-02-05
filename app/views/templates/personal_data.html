@@ -1,5 +1,9 @@
 {% extends "header.html" %}
 
+{% block head %}
+<script src="{{ url_for('static', path='scripts/fill_data.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div
@@ -15,14 +19,31 @@
                         class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                         placeholder="{{ your_first_name }}" />
                 </div>
+
+                <div id="required_field_first" class="flex items-center mt-1 hidden">
+                    <div class="flex ml-auto">
+                        <span class="inline-flex text-xs font-thin text-red-700 sm:text-sm dark:text-red-500">
+                            *Обязательное поле
+                        </span>
+                    </div>
+                </div>
             </div>
+
             <div class="w-full">
                 <div class=" relative ">
                     <input type="text" id="pd_last_name"
                         class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                         placeholder=" {{ your_last_name }}" />
                 </div>
+                <div id="required_field_last" class="flex items-center mt-1 hidden">
+                    <div class="flex ml-auto">
+                        <span class="inline-flex text-xs font-thin text-red-700 sm:text-sm dark:text-red-500">
+                            *Обязательное поле
+                        </span>
+                    </div>
+                </div>
             </div>
+
             <div class="w-full">
                 <div class=" relative ">
                     <input type="text" id="pd_second_name"
@@ -30,9 +51,16 @@
                         placeholder=" {{ your_second_name }} " />
                 </div>
             </div>
+
+            <div id="error_message_block" class="flex items-center justify-center -mt-3 hidden">
+                <span id="error_message_text"
+                    class="inline-flex items-center font-thin text-center text-red-500 dark:text-red-400">
+                </span>
+            </div>
+
             <div>
                 <span class="block w-full rounded-md shadow-sm">
-                    <button type="button"
+                    <button id="btn_confirm" type="button"
                         class="py-2 px-4  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         {{ btn_confirm }}
                     </button>

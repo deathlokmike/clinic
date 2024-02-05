@@ -30,9 +30,9 @@ function createDoctorCard(doctor, onClick) {
     d_img.alt = "doctor_image";
     d_img.width = "36";
     d_img.height = "36";
-    d_img.src = "../static/" + doctor.profile_photo_path;
+    d_img.src = "../static/" + doctor.personal_data.profile_photo_path;
 
-    d_name.innerText = doctor.full_name;
+    d_name.innerText = doctor.personal_data.first_name + " " + doctor.personal_data.second_name + " " + doctor.personal_data.last_name ;
     d_experience.innerText = doctor.experience + " лет опыта";
 
     text_div.appendChild(d_name);

@@ -4,8 +4,8 @@ from pydantic import TypeAdapter
 from app.models.users.users import Users
 from app.services.appointments.dao import AppointmentsDAO
 from app.services.appointments.dependecies.book import book_new_appointment
-from app.services.appointments.dependecies.get_free import (
-    get_free_appointments)
+from app.services.appointments.dependecies.get_free import \
+    get_free_appointments
 from app.services.appointments.schemas import (SNewAppointmentIn,
                                                SNewAppointmentOut,
                                                SPatientInfoWithAppointments)
@@ -20,7 +20,7 @@ async def get_patient_info_and_appointments(
         user: Users = Depends(get_current_user)) -> SPatientInfoWithAppointments | None:
     if user.pd_id is None:
         return None
-    raw = await AppointmentsDAO.get_patient_appointments(str(user.id))
+    raw = await AppointmentsDAO.get_patient_appointments(user.id)
     return TypeAdapter(SPatientInfoWithAppointments).validate_python(raw["Users"])
 
 

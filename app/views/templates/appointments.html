@@ -21,11 +21,11 @@
                                     <div class="flex items-center">
                                         <span class="relative p-2 bg-blue-100 rounded-full">
                                             <img alt="doctor_image" width="32" height="32"
-                                                src="{{ url_for('static', path=appointment.profile_photo_path) }}">
+                                                src="{{ url_for('static', path=appointment.doctor.user.personal_data.profile_photo_path) }}">
                                         </span>
                                         <div class="flex flex-col"><span
-                                                class="ml-2 font-semibold text-black text-md">{{appointment.specialization}}</span><span
-                                                class="ml-2 text-sm text-gray-500">{{appointment.full_name}}</span>
+                                                class="ml-2 font-semibold text-black text-md">{{appointment.doctor.specialization}}</span><span
+                                                class="ml-2 text-sm text-gray-500">{{appointment.doctor.user.personal_data.full_name}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -72,13 +72,6 @@
                                     </a>
                                     <p class="mt-2 text-xl text-center font-medium text-gray-800">
                                         {{ personal_data.full_name }}</p>
-                                    <p class="flex items-center text-xs text-gray-400">
-                                        Дата рождения: {{personal_data.birth_day.strftime('%d.%m.%Y') }}</p>
-                                    {% if personal_data.gender %}
-                                    <p class="text-xs text-gray-400">Пол: мужской</p>
-                                    {% else %}
-                                    <p class="text-xs text-gray-400">Пол: женский</p>
-                                    {% endif %}
                                     <div class="flex items-center justify-between w-full gap-4 mt-8">
                                         <button type="button"
                                             class="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ">

@@ -1,7 +1,7 @@
 .idea
 *.pyc
 .env
-scratch.py
+scratch.*
 page.py
 .vscode
 .pytest_cache

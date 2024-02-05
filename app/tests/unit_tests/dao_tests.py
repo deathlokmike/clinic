@@ -47,7 +47,8 @@ async def test_check_available_appointment(date_time: datetime.datetime, doctor_
     [
         ("982eeb52-667c-4acb-9d83-18d7d48f518a", 4),
         ("95291318-f3fa-4f0f-b3a0-8908bfe391b6", 2),
-        ("2a4e3522-f10f-4fdf-a714-3e58f451c92e", 1)
+        ("2a4e3522-f10f-4fdf-a714-3e58f451c92e", 1),
+        ("5632918c-135b-4c49-8af5-89ed75158fb1", 0)
     ],
 )
 async def test_patient_appointment(user_id: str, count_appointments: int):

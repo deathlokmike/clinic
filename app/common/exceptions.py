@@ -41,3 +41,8 @@ class UserIsNotPresentException(ClinicBaseException):
 class AppointmentNotAvailableException(ClinicBaseException):
     status_code = status.HTTP_409_CONFLICT
     detail = "Запись к врачу недоступна"
+
+
+class UserDataIsNotValid(ClinicBaseException):
+    status_code = status.HTTP_409_CONFLICT
+    detail = "Некорректно введены данные"

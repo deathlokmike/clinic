@@ -1,4 +1,4 @@
-from sqlalchemy import select, insert, update
+from sqlalchemy import insert, select, update
 
 from app.models.users.personal_data import PersonalData
 from app.models.users.users import Users
@@ -26,7 +26,7 @@ class UsersDaO(BaseDAO):
             return result.mappings().one_or_none()
 
     @classmethod
-    async def _update_pd_id(cls, user_id: str, pd_id: int):
+    async def update_pd_id(cls, user_id: str, pd_id: int):
         async with async_session() as session:
             query = (
                 update(Users)
@@ -54,3 +54,18 @@ class UsersDaO(BaseDAO):
             pd_id = await session.execute(query)
             await session.commit()
             return int(pd_id.mappings().one()["id"])
+
+    @classmethod
+    async def update_full_name(cls, pd: SUserPersonalData, pd_id: int):
+        async with async_session() as session:
+            query = (
+                update(PersonalData)
+                .where(PersonalData.id == pd_id)
+                .ordered_values(
+                    (PersonalData.first_name, pd.first_name),
+                    (PersonalData.second_name, pd.second_name),
+                    (PersonalData.last_name, pd.last_name)
+                )
+            )
+            await session.execute(query)
+            await session.commit()

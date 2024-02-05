@@ -2,11 +2,10 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app.controllers.appointments import (
-    get_available_appointments,
-    get_patient_info_and_appointments,
-)
+from app.controllers.appointments import (get_available_appointments,
+                                          get_patient_info_and_appointments)
 from app.lang.translator import Translator
+from app.services.appointments.schemas import SPatientInfoWithAppointments
 
 router = APIRouter(tags=["Фронтенд"])
 
@@ -45,10 +44,10 @@ async def get_login_page(request: Request):
 
 @router.get("/me", response_class=HTMLResponse)
 async def get_user_appointments_page(
-    request: Request, info=Depends(get_patient_info_and_appointments)
+        request: Request, patient: SPatientInfoWithAppointments = Depends(get_patient_info_and_appointments)
 ):
     translator = Translator(request.state.locale)
-    if info is None:
+    if patient is None:
         return templates.TemplateResponse(
             name="personal_data.html",
             context={
@@ -61,17 +60,15 @@ async def get_user_appointments_page(
         name="appointments.html",
         context={
             "request": request,
-            "appointments": info["appointments"],
-            "personal_data": info["personal_data"],
+            "appointments": patient.appointments,
+            "personal_data": patient.personal_data,
             **translator.get_translate("header"),
         },
     )
 
 
 @router.get("/book_appointment", response_class=HTMLResponse)
-async def get_new_appointment_page(
-    request: Request, available=Depends(get_available_appointments)
-):
+async def get_new_appointment_page(request: Request, available=Depends(get_available_appointments)):
     return templates.TemplateResponse(
         name="window.html",
         context={"request": request, "available": available},

@@ -13,6 +13,7 @@ from app.controllers.appointments import router as router_appointments
 from app.controllers.auth import router as router_auth
 from app.controllers.pages import router as router_view
 from app.controllers.pneumonia import router as router_pneumonia
+from app.controllers.users import router as router_user
 from app.middlewares.i18n import I18nMiddleware
 from app.services.schedule.tasks import set_actual_schedule
 
@@ -36,6 +37,7 @@ main_router.include_router(router_view)
 main_router.include_router(router_auth)
 main_router.include_router(router_pneumonia)
 main_router.include_router(router_appointments)
+main_router.include_router(router_user)
 
 app.include_router(main_router)
 app.mount("/static", StaticFiles(directory="app/views/static"), name="static")

@@ -52,9 +52,8 @@ def _add_doctor_by_specialization(
             temp_schedule.remove(a.date_time)
         _doctor = SDoctorWithFreeAppointments(
             id=doctor.id,
-            full_name=doctor.personal_data.full_name,
             experience=doctor.experience,
-            profile_photo_path=doctor.personal_data.profile_photo_path,
+            personal_data=doctor.user.personal_data,
             free_appointments=_group_appointments_by_date(temp_schedule),
         )
         _free_appointment.doctors.append(_doctor)

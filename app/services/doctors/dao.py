@@ -1,5 +1,5 @@
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, select
 from sqlalchemy.orm import joinedload, selectinload, with_loader_criteria
 
 from app.models.appointments import Appointments
@@ -43,8 +43,10 @@ class DoctorsDAO(BaseDAO):
     @classmethod
     async def get_by_id(cls, _id: int):
         async with async_session() as session:
-            query = (select(Doctors.__table__.columns)
-                     .filter_by(id=_id,
-                                residned=False))
+            query = (
+                select(Doctors.__table__.columns)
+                .where(
+                    and_(Doctors.id == _id,
+                         Doctors.resigned == False)))
             result = await session.execute(query)
             return result.mappings().one_or_none()
