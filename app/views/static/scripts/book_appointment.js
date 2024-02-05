@@ -1,8 +1,9 @@
 function createBubble(text, onClick) {
     let bubble = document.createElement("div");
-    bubble.classList.add("px-2", "py-2", "font-semibold", "text-gray-700", "cursor-pointer",
-        "bg-white", "rounded-xl", "shadow",
-        "transition", "duration-150", "ease-in", "hover:bg-gray-200")
+    bubble.classList.add("px-2", "py-2", "font-semibold", "text-gray-500", "cursor-pointer",
+        "bg-gray-50", "rounded-xl", "shadow",
+        "transition", "duration-150", "ease-in", "hover:bg-gray-200",
+        "dark:text-gray-200", "dark:bg-gray-700", "dark:hover:bg-gray-500")
     bubble.innerText = text;
     bubble.addEventListener("click", onClick);
     return bubble;
@@ -19,13 +20,13 @@ function createDoctorCard(doctor, onClick) {
     let card = document.createElement("div");
 
     img_span.classList.add("relative", "p-2", "bg-blue-100", "rounded-full");
-    d_name.classList.add("ml-2", "font-semibold", "text-sm", "text-left", "text-black");
-    d_experience.classList.add("ml-2", "text-left", "text-sm", "text-gray-500");
+    d_name.classList.add("ml-2", "font-semibold", "text-sm", "text-left", "text-black", "dark:text-gray-200");
+    d_experience.classList.add("ml-2", "text-left", "text-sm", "text-gray-500", "dark:text-gray-400");
     text_div.classList.add("flex", "flex-col")
     img_div.classList.add("flex", "items-center");
     align_div.classList.add("flex", "items-center", "justify-between");
-    card.classList.add("w-full", "p-4", "bg-white", "shadow", "rounded-2xl", "cursor-pointer",
-        "transition", "duration-150", "ease-in", "hover:bg-gray-200");
+    card.classList.add("w-full", "p-4", "bg-gray-50", "shadow", "rounded-2xl", "cursor-pointer",
+        "transition", "duration-150", "ease-in", "hover:bg-gray-200", "dark:bg-gray-700", "dark:hover:bg-gray-500");
 
     d_img.alt = "doctor_image";
     d_img.width = "36";

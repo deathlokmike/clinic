@@ -1,0 +1,10 @@
+{
+    "your_appointments": "Your appointments",
+    "description": "Information about your doctors",
+    "btn_book_new": "Make an appointment",
+    "btn_profile": "Profile",
+    "in_processing_status": "In processing",
+    "cancelled_status": "Cancelled",
+    "completed_status": "Completed",
+    "confirmed_status": "Confirmed"
+}

@@ -63,6 +63,7 @@ async def get_user_appointments_page(
             "appointments": patient.appointments,
             "personal_data": patient.personal_data,
             **translator.get_translate("header"),
+            **translator.get_translate("appointments")
         },
     )
 
