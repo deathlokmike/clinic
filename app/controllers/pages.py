@@ -57,7 +57,7 @@ async def get_user_appointments_page(
             },
         )
     return templates.TemplateResponse(
-        name="appointments.html",
+        name="me/main.html",
         context={
             "request": request,
             "appointments": patient.appointments,

@@ -1,0 +1,99 @@
+<div class="flex justify-center transform sm:text-center lg:text-left">
+    <div class="flex gap-4 gap-y-1">
+        <div
+            class="container flex flex-col items-center justify-center w-full mx-auto bg-white rounded-lg shadow dark:bg-gray-800">
+            <div class="w-full px-4 py-5 border-b sm:px-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+                    {{ your_appointments }}
+                </h3>
+                <p class="max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200">
+                    {{ description }}
+                </p>
+            </div>
+            <ul class="flex flex-col divide-y divide">
+                {% for appointment in appointments %}
+
+                <li class="flex flex-row">
+                    <div class="flex items-center flex-1 p-4">
+                        <div class="flex flex-col items-center hidden md:block justify-between w-10 h-10 mr-4">
+                            <a class="relative block">
+                                <img alt="profil"
+                                    src="{{ url_for('static', path=appointment.doctor.user.personal_data.profile_photo_path) }}"
+                                    class="mx-auto object-cover rounded-full h-10 w-10 " />
+                            </a>
+                        </div>
+                        <div class="flex-1 pl-1 mr-4 md:mr-16">
+                            <div class="font-medium dark:text-white">
+                                {{appointment.doctor.user.personal_data.full_name}}
+                            </div>
+                            <div class="text-sm text-gray-600 dark:text-gray-200">
+                                {{appointment.doctor.specialization}}
+                            </div>
+                        </div>
+                        <div class="text-xs text-gray-600 dark:text-gray-200">
+                            Дата приема: {{appointment.date_time.strftime('%d.%m.%Y в %H:%M') }}
+                        </div>
+                        <div class="flex flex-shrink-0 ml-2">
+                            {% if appointment.status == 0 %}
+                            <div
+                                class="inline-flex px-2 text-xs items-center justify-center font-semibold py-1 text-yellow-800 bg-yellow-100 rounded-full">
+                                <p class="mx-1 hidden md:block">
+                                    {{ in_processing_status }}
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+
+                            {% elif appointment.status == 1 %}
+
+                            <div
+                                class="inline-flex px-2 text-xs items-center justify-center font-semibold py-1 text-yellow-800 bg-yellow-100 rounded-full">
+                                <p class="mx-1 hidden md:block">
+                                    {{ confirmed_status}}
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+
+                            {% elif appointment.status == 2 %}
+                            <div
+                                class="inline-flex px-2 text-xs items-center justify-center font-semibold py-1 text-green-800 bg-green-100 rounded-full">
+                                <p class="mx-1 hidden md:block">
+                                    {{ completed_status }}
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+                            
+                            {% elif appointment.status == 3 %}
+                            <div
+                                class="inline-flex px-2 text-xs items-center justify-center font-semibold py-1 text-red-800 bg-red-100 rounded-full">
+                                <p class="mx-1 hidden md:block">
+                                    {{ cancelled_status}}
+                                </p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

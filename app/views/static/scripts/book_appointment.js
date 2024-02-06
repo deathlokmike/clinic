@@ -1,3 +1,12 @@
+function getFormattedDate(date){
+    return date;
+}
+
+function getFormattedTime(time){
+    return time;
+}
+
+
 function createBubble(text, onClick) {
     let bubble = document.createElement("div");
     bubble.classList.add("px-2", "py-2", "font-semibold", "text-gray-500", "cursor-pointer",
@@ -19,12 +28,13 @@ function createDoctorCard(doctor, onClick) {
     let img_div = document.createElement("div");
     let card = document.createElement("div");
 
-    img_span.classList.add("relative", "p-2", "bg-blue-100", "rounded-full");
+    d_img.classList.add("mx-auto", "object-cover", "rounded-full", "h-10", "w-10", "bg-blue-100");
+    img_span.classList.add("relative", "block");
     d_name.classList.add("ml-2", "font-semibold", "text-sm", "text-left", "text-black", "dark:text-gray-200");
     d_experience.classList.add("ml-2", "text-left", "text-sm", "text-gray-500", "dark:text-gray-400");
     text_div.classList.add("flex", "flex-col")
     img_div.classList.add("flex", "items-center");
-    align_div.classList.add("flex", "items-center", "justify-between");
+    align_div.classList.add("flex", "place-items-center", "justify-start");
     card.classList.add("w-full", "p-4", "bg-gray-50", "shadow", "rounded-2xl", "cursor-pointer",
         "transition", "duration-150", "ease-in", "hover:bg-gray-200", "dark:bg-gray-700", "dark:hover:bg-gray-500");
 

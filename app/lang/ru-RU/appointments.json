@@ -1,7 +1,7 @@
 {
     "your_appointments": "Ваши записи",
     "description": "Информация о ваших врачах",
-    "btn_book_new": "Записаться на прием",
+    "btn_book_appointment": "Записаться на прием",
     "btn_profile": "Профиль",
     "in_processing_status": "В обработке",
     "cancelled_status": "Отменена",

@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+{% include "me/book_modal.html" %}
+
+<div class="w-full mx-auto">
+    <main class="mt-2 lg:mt-5">
+        <div class="flex flex-col items-start justify-center w-full h-full md:flex-row md:h-1/2">
+            {% include "me/appointments.html" %}
+            {% include "me/desktop.html" %}
+        </div>
+        {% include "me/mobile.html" %}
+    </main>
+</div>
+
+<script src="{{ url_for('static', path='scripts/book_appointment.js') }}"></script>
+<script src="{{ url_for('static', path='scripts/modal_appointments.js') }}"></script>
+
+{% endblock %}

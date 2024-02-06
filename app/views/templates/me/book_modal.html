@@ -1,10 +1,10 @@
 <div id="modal"
-    class="fixed flex justify-center hidden inset-0 bg-gray-600 dark:bg-gray-800 dark:bg-opacity-50 bg-opacity-50 overflow-x-hidden overflow-y-auto h-full w-full top-0 right-0 left-0 z-50 ">
+    class="fixed flex justify-center hidden inset-0 bg-gray-600 backdrop-blur-sm shadowm-lg dark:bg-gray-800 dark:bg-opacity-50 bg-opacity-50 overflow-x-hidden overflow-y-auto h-full w-full top-0 right-0 left-0 z-50 ">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
             <!-- Modal header -->
-            <div class="flex items-center justify-center p-4 md:p-5 border-b rounded-t">
+            <div class="flex items-center justify-start p-4 md:p-5 border-b rounded-t">
                 <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                     Доступные записи
                 </h3>
@@ -21,23 +21,23 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <div class="w-full hidden" id="specialization_main">
-                    <span class="max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200">Специализация</span>
-                    <div id="specialization" class="mt-3 grid grid-cols-4 gap-3 text-center">
+                    <span class="mt-1 text-sm text-gray-500 dark:text-gray-200">Специализация</span>
+                    <div id="specialization" class="flex justify-start mt-3 gap-3 text-center">
                     </div>
                 </div>
                 <div class="w-full hidden" id="doctors_main">
                     <span class="max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200">Врачи</span>
-                    <div id="doctors" class="mt-3 grid grid-cols-2 gap-8 text-center">
+                    <div id="doctors" class="mt-3 md:grid md:grid-cols-2 flex flex-col gap-3 text-center">
                     </div>
                 </div>
                 <div class="w-full hidden" id="dates_main">
                     <span class="max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200">Даты</span>
-                    <div id="dates" class="mt-3 grid grid-cols-4 gap-3 text-center">
+                    <div id="dates" class="grid grid-flow-row-dense grid-cols-3 mt-3 gap-3 text-center">
                     </div>
                 </div>
                 <div class="w-full hidden" id="times_main">
                     <span class="max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200">Время</span>
-                    <div id="times" class="mt-3 grid grid-cols-4 gap-3 text-center">
+                    <div id="times" class="grid grid-flow-row-dense grid-cols-3  mt-3 gap-3 text-center">
                     </div>
                 </div>
             </div>
