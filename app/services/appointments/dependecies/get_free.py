@@ -42,38 +42,41 @@ def _group_appointments_by_date(appointments: list[datetime.datetime]) -> list[S
 
 
 def _add_doctor_by_specialization(
-        free_appointments: list[SAvailableAppointments],
+        available_appointments: list[SAvailableAppointments],
         doctor: SDoctorWithBookedAppointments,
         schedule: list[datetime.datetime]
 ):
-    def _add_doctor(_free_appointment: SAvailableAppointments):
+    def _add_doctor(_available_appointments: SAvailableAppointments):
         temp_schedule = schedule.copy()
         for a in doctor.appointments:
-            temp_schedule.remove(a.date_time)
+            try:
+                temp_schedule.remove(a.date_time)
+            except ValueError:
+                pass
         _doctor = SDoctorWithFreeAppointments(
             id=doctor.id,
             experience=doctor.experience,
             personal_data=doctor.user.personal_data,
             free_appointments=_group_appointments_by_date(temp_schedule),
         )
-        _free_appointment.doctors.append(_doctor)
+        _available_appointments.doctors.append(_doctor)
 
-    for free_appointment in free_appointments:
-        if free_appointment.specialization == doctor.specialization:
-            _add_doctor(free_appointment)
+    for available_appointment in available_appointments:
+        if available_appointment.specialization == doctor.specialization:
+            _add_doctor(available_appointment)
             return
 
-    free_appointments.append(
+    available_appointments.append(
         SAvailableAppointments(specialization=doctor.specialization, doctors=list())
     )
-    _add_doctor(free_appointments[-1])
+    _add_doctor(available_appointments[-1])
 
 
 async def get_free_appointments() -> list[SAvailableAppointments]:
     doctors = await DoctorsDAO.get_all_with_booked_appointments()
     schedule: list[datetime.datetime] = await get_relevant_schedule()
-    free_appointments: list[SAvailableAppointments] = list()
+    available_appointments: list[SAvailableAppointments] = list()
     for d in doctors:
         d = TypeAdapter(SDoctorWithBookedAppointments).validate_python(d["Doctors"])
-        _add_doctor_by_specialization(free_appointments, d, schedule)
-    return free_appointments
+        _add_doctor_by_specialization(available_appointments, d, schedule)
+    return available_appointments
