@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 from typing import TYPE_CHECKING
 
 from sqlalchemy import ForeignKey, types
@@ -18,6 +19,10 @@ class Users(Base):
     id: Mapped[uuid.UUID] = mapped_column(types.Uuid, primary_key=True, default=uuid.uuid4)
     email: Mapped[str]
     password: Mapped[str]
+    registration_date: Mapped[datetime] = mapped_column(
+        types.DateTime, default=datetime.utcnow(), nullable=True)
+    last_login_date: Mapped[datetime] = mapped_column(
+        types.DateTime, default=datetime.utcnow(), nullable=True)
     pd_id: Mapped[int] = mapped_column(ForeignKey("personal_data.id"), nullable=True)
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
 
