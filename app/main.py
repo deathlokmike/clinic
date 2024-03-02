@@ -1,20 +1,22 @@
 import asyncio
 from contextlib import asynccontextmanager
 
+import sentry_sdk
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRouter
 from fastapi.staticfiles import StaticFiles
-from prometheus_fastapi_instrumentator import Instrumentator
 from starlette.responses import RedirectResponse
 
 from app.common.exceptions import TokenAbsentException
+from app.config import settings
 from app.controllers.appointments import router as router_appointments
 from app.controllers.auth import router as router_auth
 from app.controllers.pages import router as router_view
 from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.users import router as router_user
 from app.middlewares.i18n import I18nMiddleware
+from app.middlewares.logging import LoggerMiddleware
 from app.services.schedule.tasks import set_actual_schedule
 
 
@@ -24,13 +26,13 @@ async def lifespan(_: FastAPI):
     yield
 
 
-app = FastAPI(title="Clinic API", lifespan=lifespan)
-
-instrumentation = Instrumentator(
-    should_group_status_codes=False, excluded_handlers=[".*admin.*", "/metrics"]
+sentry_sdk.init(
+    dsn=settings.SENTRY_DSN,
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
 )
 
-instrumentation.instrument(app).expose(app)
+app = FastAPI(title="Clinic API", lifespan=lifespan)
 
 main_router = APIRouter()
 main_router.include_router(router_view)
@@ -60,6 +62,7 @@ app.add_middleware(
     ],
 )
 app.add_middleware(I18nMiddleware)
+app.add_middleware(LoggerMiddleware)
 
 
 @app.exception_handler(TokenAbsentException)

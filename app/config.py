@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     JWT_SECRET: str
     JWT_ALGORITHM: str
 
+    SENTRY_DSN: str
+
     model_config = SettingsConfigDict(env_file=".env")
 
 

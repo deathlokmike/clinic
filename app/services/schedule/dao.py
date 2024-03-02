@@ -2,6 +2,7 @@ import datetime
 
 from sqlalchemy import and_, between, delete, desc, insert, select
 
+from app.logger import logger
 from app.models.schedule import Schedule
 from app.services.base_dao import BaseDAO
 from app.services.database import async_session
@@ -37,6 +38,9 @@ class ScheduleDaO(BaseDAO):
     async def delete_old(cls, date_time: datetime.datetime):
         async with async_session() as session:
             query = delete(Schedule).where(Schedule.end_time < date_time)
+            logger.info("Delete old schedule records", extra={
+                "date_time": date_time,
+            })
             await session.execute(query)
             await session.commit()
 
@@ -48,6 +52,10 @@ class ScheduleDaO(BaseDAO):
         end = datetime.datetime(year=date.year, month=date.month, day=date.day, hour=17)
         async with async_session() as session:
             query = insert(Schedule).values(start_time=start, end_time=end)
+            logger.info("Insert new schedule records", extra={
+                "start_time": start,
+                "end_time": end,
+            })
             await session.execute(query)
             await session.commit()
 
