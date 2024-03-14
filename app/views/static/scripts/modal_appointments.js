@@ -26,12 +26,11 @@ bookButtonMobile.onclick = function () {
 close.onclick = function () {
     modal.classList.add("hidden")
     navBar.classList.remove("hidden");
-    
 };
 
 declineButton.onclick = function () {
     modal.classList.add("hidden")
-    navBar.classList.remove("hidden");
+    navBar.classList.remove("hidden");  
 };
 
 window.onclick = function (event) {
