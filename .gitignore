@@ -6,3 +6,4 @@ page.py
 .vscode
 .pytest_cache
 .DS_Store
+*.log
