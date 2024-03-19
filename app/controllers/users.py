@@ -14,7 +14,6 @@ router = APIRouter(prefix="/api/users", tags=["Данные пользовате
 @router.post("/update_fullname")
 async def update_user_full_name(pd: SUserPersonalData, user: Users = Depends(get_current_user)):
     name_pattern = re.compile(r'^[a-zA-Zа-яА-Я]*\Z')
-
     if ((
             pd.first_name is None or not re.search(name_pattern, pd.first_name)) and (
             pd.last_name is None or not re.search(name_pattern, pd.last_name)) and (

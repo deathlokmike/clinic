@@ -6,7 +6,6 @@ from jose import ExpiredSignatureError, jwt
 from app.common.exceptions import (TokenAbsentException, TokenExpiredException,
                                    UserIsNotPresentException)
 from app.config import settings
-from app.models.users.personal_data import PersonalData
 from app.models.users.users import Users
 from app.services.users.dao import UsersDaO
 

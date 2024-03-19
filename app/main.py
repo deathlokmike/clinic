@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.responses import RedirectResponse
 
 from app.common.exceptions import TokenAbsentException
+from app.common.handler import exception_handlers
 from app.config import settings
 from app.controllers.appointments import router as router_appointments
 from app.controllers.auth import router as router_auth
@@ -32,7 +33,9 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 )
 
-app = FastAPI(title="Clinic API", lifespan=lifespan)
+app = FastAPI(title="Clinic API",
+              lifespan=lifespan,
+              exception_handlers=exception_handlers)
 
 main_router = APIRouter()
 main_router.include_router(router_view)

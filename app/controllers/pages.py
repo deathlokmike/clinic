@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, Request
+from fastapi.exceptions import HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app.controllers.appointments import (get_available_appointments,
-                                          get_patient_info_and_appointments)
+from app.controllers.appointments import get_patient_info_and_appointments
 from app.lang.translator import Translator
 from app.services.appointments.schemas import SPatientInfoWithAppointments
 
@@ -25,6 +25,17 @@ async def get_registration_page(request: Request):
             **translator.get_translate("header"),
         },
     )
+
+
+async def not_found_error(request: Request, exc: HTTPException):
+    translator = Translator(request.state.locale)
+    return templates.TemplateResponse(
+        name="404.html",
+        context={
+            "request": request,
+            **translator.get_translate("page_not_found")
+        },
+        status_code=404)
 
 
 @router.get("/login", response_class=HTMLResponse)
@@ -65,12 +76,4 @@ async def get_user_appointments_page(
             **translator.get_translate("header"),
             **translator.get_translate("appointments")
         },
-    )
-
-
-@router.get("/book_appointment", response_class=HTMLResponse)
-async def get_new_appointment_page(request: Request, available=Depends(get_available_appointments)):
-    return templates.TemplateResponse(
-        name="window.html",
-        context={"request": request, "available": available},
     )
