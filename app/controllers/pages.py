@@ -2,14 +2,25 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.exceptions import HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from starlette.responses import RedirectResponse
 
 from app.controllers.appointments import get_patient_info_and_appointments
 from app.lang.translator import Translator
+from app.models.users.users import Users
 from app.services.appointments.schemas import SPatientInfoWithAppointments
+from app.services.users.dependencies import get_current_user
 
 router = APIRouter(tags=["Фронтенд"])
 
 templates = Jinja2Templates(directory="app/views/templates")
+
+
+@router.get("/", response_class=HTMLResponse)
+async def get_index_page(request: Request, user: Users = Depends(get_current_user)):
+    if user:
+        return RedirectResponse(url="/me")
+    else:
+        return RedirectResponse(url="/login")
 
 
 @router.get("/registration", response_class=HTMLResponse)
