@@ -1,3 +1,5 @@
+import datetime
+
 from sqlalchemy import insert, select, update
 
 from app.models.users.personal_data import PersonalData
@@ -65,6 +67,19 @@ class UsersDaO(BaseDAO):
                     (PersonalData.first_name, pd.first_name),
                     (PersonalData.second_name, pd.second_name),
                     (PersonalData.last_name, pd.last_name)
+                )
+            )
+            await session.execute(query)
+            await session.commit()
+
+    @classmethod
+    async def update_login_datetime(cls, id_: int):
+        async with async_session() as session:
+            query = (
+                update(Users)
+                .where(Users.id == id_)
+                .ordered_values(
+                    (Users.last_login_date, datetime.datetime.utcnow()),
                 )
             )
             await session.execute(query)

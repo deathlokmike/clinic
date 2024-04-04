@@ -1,3 +1,5 @@
+import datetime
+
 from fastapi import APIRouter, Response
 
 from app.common.exceptions import (IncorrectUserOrPassword,
@@ -16,7 +18,11 @@ async def register_user(user_data: SUserAuth):
     if existing_user:
         raise UserAlreadyExistsException
     hashed_password = get_password_hash(user_data.password)
-    await UsersDaO.add(email=user_data.email, password=hashed_password, role_id=0)
+    await UsersDaO.add(
+        email=user_data.email,
+        password=hashed_password,
+        registration_date=datetime.datetime.utcnow(),
+        role_id=0)
 
 
 @router.post("/login")

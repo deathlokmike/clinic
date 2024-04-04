@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Optional
 
 from jose import jwt
 from passlib.context import CryptContext
@@ -28,7 +29,8 @@ def create_access_token(data: dict) -> str:
 
 
 async def authenticate_user(email: EmailStr, password: str) -> Users | None:
-    user = await UsersDaO.get_one_or_none(email=email)
+    user: Optional[Users] = await UsersDaO.get_one_or_none(email=email)
     if user and verify_password(password, user.password):
+        await UsersDaO.update_login_datetime(user.id)
         return user
     return None
