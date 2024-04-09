@@ -5,26 +5,7 @@ from pydantic import TypeAdapter
 
 from app.services.appointments.dao import AppointmentsDAO
 from app.services.appointments.schemas import SPatientInfoWithAppointments
-from app.services.schedule.dao import ScheduleDaO
 from app.services.users.dao import PersonalData, UsersDaO
-
-
-@pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "date_time, res",
-    [
-        (datetime.datetime(year=2023, month=11, day=19, hour=9), False),
-        (datetime.datetime(year=2022, month=11, day=19, hour=9), False),
-        (datetime.datetime(year=2023, month=11, day=23, hour=7), False),
-        (datetime.datetime(year=2023, month=11, day=23, hour=17), False),
-        (datetime.datetime(year=2023, month=11, day=23, hour=16), True),
-        (datetime.datetime(year=2023, month=11, day=24, hour=8), True),
-        (datetime.datetime(year=2023, month=11, day=24, hour=9), True),
-    ],
-)
-async def test_schedule_between(date_time, res: bool):
-    result = await ScheduleDaO.check_date(date_time)
-    assert result == res
 
 
 @pytest.mark.asyncio

@@ -18,12 +18,12 @@ from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.users import router as router_user
 from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.logging import LoggerMiddleware
-from app.services.schedule.tasks import set_actual_schedule
+from app.services.schedule.tasks import start_schedule_task
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    asyncio.ensure_future(set_actual_schedule())
+    asyncio.ensure_future(start_schedule_task())
     yield
 
 

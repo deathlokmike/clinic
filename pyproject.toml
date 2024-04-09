@@ -27,6 +27,7 @@ sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
 pytest = "^7.4.3"
 isort = "^5.13.0"
 pytest-asyncio = "^0.23.2"
+freezegun = "^1.4.0"
 
 
 [tool.poetry.group.prod.dependencies]
