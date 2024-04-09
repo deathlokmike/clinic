@@ -21,7 +21,7 @@ class ScheduleDaO(BaseDAO):
             return result.mappings().all()
 
     @classmethod
-    async def check_date(cls, date_time: datetime.datetime) -> bool:
+    async def check_availability_date(cls, date_time: datetime.datetime) -> bool:
         async with async_session() as session:
             query = select(Schedule.start_time).where(
                 and_(
@@ -35,11 +35,12 @@ class ScheduleDaO(BaseDAO):
             return True
 
     @classmethod
-    async def delete_old(cls, date_time: datetime.datetime):
+    async def delete_old(cls, datetime_now: datetime.datetime):
         async with async_session() as session:
-            query = delete(Schedule).where(Schedule.end_time < date_time)
+            query = delete(Schedule).where(Schedule.end_time < datetime_now)
             logger.info("Delete old schedule records", extra={
-                "date_time": date_time,
+                "date_time": datetime_now,
+                "query": query,
             })
             await session.execute(query)
             await session.commit()
@@ -55,6 +56,7 @@ class ScheduleDaO(BaseDAO):
             logger.info("Insert new schedule records", extra={
                 "start_time": start,
                 "end_time": end,
+                "query": query,
             })
             await session.execute(query)
             await session.commit()

@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Annotated
 
 from fastapi import Depends, Request
 from jose import ExpiredSignatureError, jwt
@@ -17,7 +18,7 @@ def _get_token(request: Request) -> str:
     return token
 
 
-async def get_current_user(token: str = Depends(_get_token)) -> Users:
+async def get_current_user(token: Annotated[str, Depends(_get_token)]) -> Users:
     try:
         payload = jwt.decode(token, settings.JWT_SECRET, settings.JWT_ALGORITHM)
     except ExpiredSignatureError:

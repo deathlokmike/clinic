@@ -18,7 +18,7 @@ def _check_hours_and_minutes(date_time: datetime.datetime):
 
 
 async def _check_date_time_is_in_schedule(date_time: datetime.datetime):
-    schedule_check: bool = await ScheduleDaO.check_date(date_time)
+    schedule_check: bool = await ScheduleDaO.check_availability_date(date_time)
     if not schedule_check:
         raise AppointmentNotAvailableException
 
