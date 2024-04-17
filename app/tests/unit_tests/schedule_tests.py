@@ -7,22 +7,6 @@ from sqlalchemy import select
 from app.models.schedule import Schedule
 from app.services.database import async_session
 from app.services.schedule.dao import ScheduleDaO
-from app.services.schedule.tasks import _get_sleep_time_in_sec
-
-
-@pytest.mark.parametrize(
-    "datetime_, secs",
-    [
-        ("2023-11-04 20:40:32", 11968),
-        ("2023-11-04 00:00:00", 86400),
-        ("2023-11-04 00:00:01", 86399),
-        ("2023-11-04 23:59:59", 1),
-    ],
-)
-def test_sleep_time(datetime_: str, secs: int):
-    with freeze_time(datetime_):
-        now = datetime.datetime.now()
-        assert _get_sleep_time_in_sec(now) == secs
 
 
 @pytest.mark.asyncio

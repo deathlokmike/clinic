@@ -4,27 +4,19 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app.config import settings
-from app.models.appointments import Appointments
-from app.models.pneumonia import Pneumonia
-from app.models.schedule import Schedule
-from app.models.treatments import Treatments
-from app.models.users.doctors import Doctors
-from app.models.users.personal_data import PersonalData
-from app.models.users.roles import Roles
-from app.models.users.users import Users
 from app.services.database import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallback=True")
+config.set_main_option("sqlalchemy.url",
+                       f"postgresql+asyncpg://{settings.get_database_url}?async_fallback=True")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
-
 
 target_metadata = Base.metadata
 

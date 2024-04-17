@@ -1,6 +1,3 @@
-import asyncio
-from contextlib import asynccontextmanager
-
 import sentry_sdk
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,14 +15,6 @@ from app.controllers.pneumonia import router as router_pneumonia
 from app.controllers.users import router as router_user
 from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.logging import LoggerMiddleware
-from app.services.schedule.tasks import start_schedule_task
-
-
-@asynccontextmanager
-async def lifespan(_: FastAPI):
-    asyncio.ensure_future(start_schedule_task())
-    yield
-
 
 sentry_sdk.init(
     dsn=settings.SENTRY_DSN,
@@ -34,7 +23,6 @@ sentry_sdk.init(
 )
 
 app = FastAPI(title="Clinic API",
-              lifespan=lifespan,
               exception_handlers=exception_handlers)
 
 main_router = APIRouter()

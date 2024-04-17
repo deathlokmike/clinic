@@ -5,7 +5,7 @@ from sqlalchemy import and_, between, delete, desc, insert, select
 from app.logger import logger
 from app.models.schedule import Schedule
 from app.services.base_dao import BaseDAO
-from app.services.database import async_session
+from app.services.database import async_session, sync_session
 
 
 class ScheduleDaO(BaseDAO):
@@ -35,35 +35,35 @@ class ScheduleDaO(BaseDAO):
             return True
 
     @classmethod
-    async def delete_old(cls, datetime_now: datetime.datetime):
-        async with async_session() as session:
+    def delete_old(cls, datetime_now: datetime.datetime):
+        with sync_session() as session:
             query = delete(Schedule).where(Schedule.end_time < datetime_now)
             logger.info("Delete old schedule records", extra={
                 "date_time": datetime_now,
                 "query": query,
             })
-            await session.execute(query)
-            await session.commit()
+            session.execute(query)
+            session.commit()
 
     @classmethod
-    async def insert_new(cls, date: datetime.date):
+    def insert_new(cls, date: datetime.date):
         start = datetime.datetime(
             year=date.year, month=date.month, day=date.day, hour=8
         )
         end = datetime.datetime(year=date.year, month=date.month, day=date.day, hour=17)
-        async with async_session() as session:
+        with sync_session() as session:
             query = insert(Schedule).values(start_time=start, end_time=end)
             logger.info("Insert new schedule records", extra={
                 "start_time": start,
                 "end_time": end,
                 "query": query,
             })
-            await session.execute(query)
-            await session.commit()
+            session.execute(query)
+            session.commit()
 
     @classmethod
-    async def get_last_datetime(cls) -> datetime.datetime | None:
-        async with async_session() as session:
+    def get_last_datetime(cls) -> datetime.datetime | None:
+        with sync_session() as session:
             query = select(Schedule.end_time).order_by(desc(Schedule.end_time)).limit(1)
-            result = await session.execute(query)
+            result = session.execute(query)
             return result.scalars().one_or_none()
