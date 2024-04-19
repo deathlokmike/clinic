@@ -1,10 +1,9 @@
--- Active: 1700866669137@@127.0.0.1@5432@clinic_db
-
-
 INSERT INTO roles (id, name)
 VALUES
 (0, 'Пациент'),
-(1, 'Врач')
+(1, 'Врач'),
+(2, 'Админ'),
+(3, 'Модератор');
 
 INSERT INTO personal_data(first_name, second_name, last_name, birth_day, gender, passport_data, address, phone_number, profile_photo_path)
 VALUES
@@ -46,11 +45,4 @@ VALUES
 ('6434ece9-19a9-45fe-ba04-ba8648db5f16','Хирург', '2015-12-18', 6, false),
 ('9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc','Терапевт', '2019-08-14', 4, false);
 
-INSERT INTO appointments (id, patient_user_id, doctor_id, date_time, status)
-VALUES
-(1, '6434ece9-19a9-45fe-ba04-ba8648db5f16', 1, '2023-11-19 10:00:00', 0),
-(2, '6434ece9-19a9-45fe-ba04-ba8648db5f16', 2, '2023-10-19 10:00:00', 1),
-(3, '6434ece9-19a9-45fe-ba04-ba8648db5f16', 3, '2023-11-19 10:00:00', 2),
-(4, '6434ece9-19a9-45fe-ba04-ba8648db5f16', 4, '2023-10-20 10:00:00', 2),
-(5, '6434ece9-19a9-45fe-ba04-ba8648db5f16', 5, '2023-11-19 10:00:00', 3);
     

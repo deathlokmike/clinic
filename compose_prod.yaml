@@ -1,0 +1,69 @@
+services:
+  db:
+    image: postgres:15
+    container_name: clinic_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+      - PGPORT=${DB_PORT}
+    networks:
+      - common-net
+
+  redis:
+    image: redis:7
+    container_name: clinic_redis
+    volumes:
+      - redis_data:/var/lib/redis/data
+    networks:
+      - common-net
+
+  clinic:
+    build:
+      context: .
+    container_name: clinic_app
+    ports:
+      - "8080:8000"
+    command: /bin/bash -c /clinic/setup/scripts/app.bash
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    networks:
+      - common-net
+
+  celery:
+    build:
+      context: .
+    container_name: clinic_celery
+    command: /bin/bash -c "/clinic/setup/scripts/celery.bash celery"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - common-net
+
+  celery_beat:
+    build:
+      context: .
+    container_name: clinic_celery_beat
+    command: /bin/bash -c "/clinic/setup/scripts/celery.bash beat"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - common-net
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  common-net: { }

@@ -13,7 +13,7 @@ worker = Celery(
 
 worker.conf.beat_schedule = {
     "scheduled": {
-        "task": "set_actual_schedule",
+        "task": "set_actual_schedule_task",
         "schedule": crontab(minute='10', hour='0')
     }
 }

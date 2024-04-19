@@ -11,7 +11,6 @@ def _insert_new_date_times(start: datetime.datetime, now: datetime.datetime):
         start += datetime.timedelta(days=1)
 
 
-@worker.task
 def set_actual_schedule():
     now = datetime.datetime.now()
     ScheduleDaO.delete_old(now)
@@ -21,3 +20,8 @@ def set_actual_schedule():
     else:
         start_datetime = now
     _insert_new_date_times(start_datetime, now)
+
+
+@worker.task
+def set_actual_schedule_task():
+    set_actual_schedule()
