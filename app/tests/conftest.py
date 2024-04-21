@@ -16,7 +16,7 @@ from app.services.database import Base, async_session, engine
 
 
 def _open_mock_json(model: str):
-    with open(f"app/tests/mock_{model}.json", encoding="utf-8") as file:
+    with open(f"app/tests/mocks/mock_{model}.json", encoding="utf-8") as file:
         return json.load(file)
 
 
@@ -50,6 +50,8 @@ async def prepare_database():
 
     for u in users:
         u["id"] = uuid.UUID(u["id"])
+        u["registration_date"] = datetime.datetime.strptime(u["registration_date"], "%Y-%m-%d %H:%M:%S")
+        u["last_login_date"] = datetime.datetime.strptime(u["last_login_date"], "%Y-%m-%d %H:%M:%S")
 
     for p in personal_data:
         p["birth_day"] = datetime.datetime.strptime(p["birth_day"], "%Y-%m-%d")

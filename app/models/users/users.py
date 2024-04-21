@@ -19,8 +19,8 @@ class Users(Base):
     id: Mapped[uuid.UUID] = mapped_column(types.Uuid, primary_key=True, default=uuid.uuid4)
     email: Mapped[str]
     password: Mapped[str]
-    registration_date: Mapped[datetime] = mapped_column(types.DateTime, nullable=True)
-    last_login_date: Mapped[datetime] = mapped_column(types.DateTime, nullable=True)
+    registration_date: Mapped[datetime] = mapped_column(types.DateTime, nullable=False)
+    last_login_date: Mapped[datetime] = mapped_column(types.DateTime, nullable=False)
     pd_id: Mapped[int] = mapped_column(ForeignKey("personal_data.id"), nullable=True)
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
 

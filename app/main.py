@@ -16,11 +16,12 @@ from app.controllers.users import router as router_user
 from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.logging import LoggerMiddleware
 
-sentry_sdk.init(
-    dsn=settings.SENTRY_DSN,
-    traces_sample_rate=1.0,
-    profiles_sample_rate=1.0,
-)
+if len(settings.SENTRY_DSN) != 0:
+    sentry_sdk.init(
+        dsn=settings.SENTRY_DSN,
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
 
 app = FastAPI(title="Clinic API",
               exception_handlers=exception_handlers)

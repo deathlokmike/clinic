@@ -18,18 +18,18 @@ VALUES
 ('Михаил','Артемьевич', 'Денисов', '1991-06-18', true, '5544332211', 'ул. Рабочая, д. 27', '79890123456', 'img/default_profile_photo.png'),
 ('Татьяна','Олеговна', 'Мельникова', '1986-10-03', false, '7654321098', 'ул. Садовая, д. 8', '79901234567', 'img/default_profile_photo.png');
 
-INSERT INTO users (id, email, password, role_id, pd_id)
+INSERT INTO users (id, email, password, role_id, pd_id, registration_date, last_login_date)
 VALUES
-('f68d50db-f10a-48b4-acb1-8fae183cac3a', 'user1@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 1),
-('4d527bd4-c872-4e2c-a56f-14260b345a64', 'user2@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 2),
-('4a7f20f7-e92d-4925-a580-2b965e2da0a6', 'user3@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 3),
-('bead8e61-68be-4f39-a459-bf6c906b37c1', 'user4@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 4),
-('98367c58-9574-4c54-ac91-da4c764c75aa', 'user5@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 5),
-('cb56fdbb-fd02-4fd8-a3d9-3487b54f21cc', 'user6@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 6),
-('a5c42a22-3fa0-4bf3-b489-5d4fc9d7ea6f', 'user7@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 7),
-('b6bac282-22ae-4128-8478-7f61c54b6487', 'user8@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 8),
-('6434ece9-19a9-45fe-ba04-ba8648db5f16', 'user9@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 9),
-('9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc', 'user10@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 10);
+('f68d50db-f10a-48b4-acb1-8fae183cac3a', 'user1@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 1, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('4d527bd4-c872-4e2c-a56f-14260b345a64', 'user2@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 2, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('4a7f20f7-e92d-4925-a580-2b965e2da0a6', 'user3@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 3, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('bead8e61-68be-4f39-a459-bf6c906b37c1', 'user4@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 4, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('98367c58-9574-4c54-ac91-da4c764c75aa', 'user5@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 5, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('cb56fdbb-fd02-4fd8-a3d9-3487b54f21cc', 'user6@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 6, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('a5c42a22-3fa0-4bf3-b489-5d4fc9d7ea6f', 'user7@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 7, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('b6bac282-22ae-4128-8478-7f61c54b6487', 'user8@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 8, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('6434ece9-19a9-45fe-ba04-ba8648db5f16', 'user9@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 9, '2023-06-22 10:00:00', '2023-08-22 10:00:00'),
+('9a9e283a-eedb-408d-a9ea-7ac4fb1ee1dc', 'user10@example.com', '$2b$12$UDtMnHqsnIajX7ofKaRp0.Bu5rSkKGd0dhQ4RlpUgCMXg2mTUtN66', 1, 10, '2023-06-22 10:00:00', '2023-08-22 10:00:00');
 
 
 INSERT INTO doctors (user_id, specialization, date_employment, pre_work_experience, resigned)
