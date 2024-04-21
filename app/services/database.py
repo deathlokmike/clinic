@@ -22,5 +22,10 @@ async_session: async_sessionmaker[AsyncSession] = async_sessionmaker(
     bind=engine, class_=AsyncSession, expire_on_commit=False
 )
 
-sync_engine = create_engine(f"postgresql+psycopg2://{settings.get_database_url}")
+if settings.MODE == "TEST":
+    sync_db_url = f"postgresql+psycopg2://{settings.get_test_database_url}"
+else:
+    sync_db_url = f"postgresql+psycopg2://{settings.get_database_url}"
+
+sync_engine = create_engine(sync_db_url)
 sync_session = sessionmaker(sync_engine)

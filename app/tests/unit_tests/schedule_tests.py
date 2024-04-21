@@ -45,7 +45,7 @@ async def test_delete_old_records(datetime_: str, count: int, return_schedule_to
     with freeze_time(datetime_):
         now = datetime.datetime.now()
         before = await get_schedule()
-        await ScheduleDaO.delete_old(now)
+        ScheduleDaO.delete_old(now)
         after = await get_schedule()
         assert len(before) - len(after) == count
 
