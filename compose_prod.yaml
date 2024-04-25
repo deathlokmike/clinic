@@ -1,4 +1,54 @@
 services:
+  init-dh_params:
+    image: docker.io/certbot/certbot
+    restart: "no"
+    entrypoint: /bin/sh
+    command: -c 'test -f /etc/letsencrypt/ssl-dh_params.pem || openssl dhparam -out /etc/letsencrypt/ssl-dh_params.pem 4096'
+    volumes:
+      - cert_volume:/etc/letsencrypt:Z
+  certbot-oneshot:
+    image: docker.io/certbot/certbot
+    restart: "no"
+    entrypoint: /bin/sh
+    command: -c 'test -d /etc/letsencrypt/live/"${BASE_DOMAIN}" || certbot certonly --standalone --register-unsafely-without-email -d "${BASE_DOMAIN}" --rsa-key-size "${rsa_key_size:-2048}" --agree-tos --force-renewal'
+    ports:
+      - 80:80
+    volumes:
+      - cert_volume:/etc/letsencrypt:Z
+  nginx:
+    image: docker.io/library/nginx
+    entrypoint: /bin/sh
+    command: -c 'while :; do sleep 6h && wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'
+    configs:
+      - source: nginx_server
+        target: /etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      init-dh_params:
+        condition: service_completed_successfully
+        required: true
+      certbot-oneshot:
+        condition: service_completed_successfully
+        required: true
+      clinic:
+        condition: service_started
+        required: true
+    volumes:
+      - cert_volume:/etc/letsencrypt:Z
+      - acme_challenge:/usr/share/nginx/html/.well-known:Z
+  certbot:
+    image: docker.io/certbot/certbot
+    entrypoint: /bin/sh
+    command: -c 'trap exit TERM; while :; do certbot renew; sleep 24h && wait $${!}; done;'
+    depends_on:
+      nginx:
+        condition: service_started
+        required: true
+    volumes:
+      - cert_volume:/etc/letsencrypt:Z
+      - acme_challenge:/usr/share/nginx/html/.well-known:Z
   db:
     image: postgres:15
     container_name: clinic_db
@@ -11,59 +61,85 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
       - PGPORT=${DB_PORT}
-    networks:
-      - common-net
-
   redis:
     image: redis:7
     container_name: clinic_redis
     volumes:
       - redis_data:/var/lib/redis/data
-    networks:
-      - common-net
-
   clinic:
     build:
       context: .
+      dockerfile: ./setup/clinic.Dockerfile
     container_name: clinic_app
-    ports:
-      - "8080:8000"
-    command: /bin/bash -c /clinic/setup/scripts/app.bash
+    command: /bin/bash -c /clinic/setup/scripts/app.sh
     env_file:
       - .env
     depends_on:
       - db
       - redis
-    networks:
-      - common-net
-
   celery:
     build:
       context: .
+      dockerfile: ./setup/clinic.Dockerfile
     container_name: clinic_celery
-    command: /bin/bash -c "/clinic/setup/scripts/celery.bash celery"
+    command: /bin/bash -c "/clinic/setup/scripts/celery.sh celery"
     env_file:
       - .env
     depends_on:
       - redis
-    networks:
-      - common-net
-
   celery_beat:
     build:
       context: .
+      dockerfile: ./setup/clinic.Dockerfile
     container_name: clinic_celery_beat
-    command: /bin/bash -c "/clinic/setup/scripts/celery.bash beat"
+    command: /bin/bash -c "/clinic/setup/scripts/celery.sh beat"
     env_file:
       - .env
     depends_on:
       - redis
-    networks:
-      - common-net
 
 volumes:
+  cert_volume: {}
+  acme_challenge: {}
   postgres_data:
   redis_data:
 
-networks:
-  common-net: { }
+configs:
+  nginx_server:
+    content: |
+      upstream back {
+        server clinic:8000;
+      }
+      server {
+        listen 80;
+        return 301 https://$$host$$request_uri;
+      
+        location /static {
+          proxy_pass https://back;
+          expires max;
+          etag on;
+        }
+      }
+      server {
+        listen 443 ssl;
+        server_name "${BASE_DOMAIN}";
+        client_max_body_size 10M;
+        ssl_certificate /etc/letsencrypt/live/${BASE_DOMAIN}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${BASE_DOMAIN}/privkey.pem;
+        ssl_trusted_certificate /etc/letsencrypt/live/clinic-demo.ru/chain.pem; 
+    
+        ssl_stapling on;
+        ssl_stapling_verify on;
+      
+        location / {
+          proxy_set_header Host $$http_host;
+          proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $$scheme;
+          proxy_set_header Upgrade $$http_upgrade;
+          proxy_redirect off;
+          proxy_buffering off;
+          proxy_pass http://back;
+          proxy_pass_header X-CSRFToken;
+          proxy_pass_header X-RecaptchaResponse;
+        }
+      }

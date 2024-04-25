@@ -35,6 +35,8 @@ class Settings(BaseSettings):
 
     SENTRY_DSN: str
 
+    BASE_DOMAIN: str
+
     model_config = SettingsConfigDict(env_file=".env")
 
 
