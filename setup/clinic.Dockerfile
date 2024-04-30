@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y curl build-esse
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 WORKDIR $PYSETUP_PATH
-COPY pyproject.toml ./
+
+COPY ../pyproject.toml ./
 
 RUN poetry install --only main
 
@@ -35,6 +36,6 @@ RUN mkdir /clinic
 
 WORKDIR /clinic
 
-COPY . .
+COPY .. .
 
-RUN chmod a+x /clinic/setup/scripts/*.bash
+RUN chmod a+x /clinic/setup/scripts/*.sh
